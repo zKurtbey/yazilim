@@ -272,6 +272,90 @@
                         "'Garbage Collection' (Çöp Toplama), Java'da bellek yönetimi için otomatik olarak kullanılan bir işlemdir. Java programı çalışırken, artık kullanılmayan nesneleri belirler ve bellekten kaldırır.",
                         "'Lambda Expressions' (Lambda İfadeleri), Java 8 ile birlikte eklenen bir özelliktir. Bu ifadeler, işlevsel programlama tekniklerini destekler ve kodu daha kısa ve okunabilir hale getirir."
                     ];
+
+                    var hatalicevaplar = [
+                        // Soru 1
+                            "Java, yalnızca web tarayıcılarında kullanılır.",
+                            "Java, sadece mobil uygulamalar için kullanılır.",
+                            "Java, yalnızca veri tabanı yönetimi için kullanılır.",
+                        // Soru 2
+                            "Java'nın temel özellikleri arasında platform bağımlı olması vardır.",
+                            "Java, nesne yönelimli bir dil değildir.",
+                            "Java, sadece Windows işletim sistemi üzerinde çalışabilir.",
+                        // Soru 3
+                            "Java, 1970'li yıllarda geliştirilmiştir.",
+                            "Java, ilk olarak IBM şirketi tarafından yayınlanmıştır.",
+                            "Java, 2010'lu yıllarda popülerlik kazanmıştır.",
+                        // Soru 4
+                            "Değişken tanımlama için 'int' anahtar kelimesi kullanılır.",
+                            "Değişkenler, her zaman 'var' anahtar kelimesiyle tanımlanmalıdır.",
+                            "Değişkenler, her zaman 'string' tipinde tanımlanmalıdır.",
+                        // Soru 5
+                            "Java'da sadece 'integer' ve 'double' veri tipleri bulunur.",
+                            "Java'da sadece 'array' ve 'list' veri tipleri bulunur.",
+                            "Java'da sadece 'string' ve 'boolean' veri tipleri bulunur.",
+                        // Soru 6
+                            "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
+                            "'else if' ifadesi, yalnızca bir koşulu kontrol eder.",
+                            "'else' ifadesi, her zaman bir koşulun doğru olması durumunda çalışır.",
+                        // Soru 7
+                            "'for' döngüsü, yalnızca belirli bir koşul sağlandığında çalışır.",
+                            "'while' döngüsü, belirli bir sayıda tekrarlar.",
+                            "'for' döngüsü, bir koşul sağlandığında çalışır ve ardından koşul kontrol edilir.",
+                        // Soru 8
+                            "Dizi oluşturmak için 'array' anahtar kelimesi kullanılır.",
+                            "Dizi elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
+                            "Dizi oluştururken, elemanlar parantez içine alınmaz.",
+                        // Soru 9
+                            "Nesne oluşturmak için 'nesne' anahtar kelimesi kullanılır.",
+                            "Nesneler, her zaman köşeli parantez içinde tanımlanır.",
+                            "Nesneler, sadece integer anahtarlarla tanımlanabilir.",
+                        // Soru 10
+                            "Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
+                            "Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
+                            "Fonksiyonlar, sadece 'method' anahtar kelimesi ile tanımlanabilir.",
+                        // Soru 11
+                            "'try' bloğu, her zaman hata fırlatır.",
+                            "'catch' bloğu, her zaman hata mesajını gizler.",
+                            "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışır.",
+                        // Soru 12
+                            "'let' anahtar kelimesi, değişkenlerin değerlerini değiştiremez.",
+                            "'const' anahtar kelimesi, değişkenlerin değerlerini daha sonra atama yapmadan değiştirilebilir.",
+                            "'var' anahtar kelimesi, blok kapsamı dışında erişilebilir.",
+                        // Soru 13
+                            "'map' fonksiyonu, dizi elemanlarını birleştirir.",
+                            "'filter' fonksiyonu, belirli bir koşula uyan dizi elemanlarını çıkarır.",
+                            "'map' fonksiyonu, dizi elemanlarını filtreler.",
+                        // Soru 14
+                            "'fetch' API'si, sadece sunucu tarafında kullanılır.",
+                            "'fetch' API'si, asenkron işlemleri yönetmek için kullanılır.",
+                            "'fetch' API'si, yalnızca POST istekleri yapmak için kullanılır.",
+                        // Soru 15
+                            "'async' anahtar kelimesi, kodun senkronize çalışmasını sağlar.",
+                            "'await' anahtar kelimesi, sadece 'async' fonksiyonları içinde kullanılabilir.",
+                            "'await' anahtar kelimesi, kodun devam etmeden önce bir işlemin tamamlanmasını bekler.",
+                        // Soru 16
+                            "Modüller, JavaScript'te kullanılamaz.",
+                            "Modüller, sadece bir kez tanımlanabilir ve daha sonra değiştirilemez.",
+                            "Modüller, yalnızca 'import' anahtar kelimesi ile çağrılabilir.",
+                        // Soru 17
+                            "Ok fonksiyonları, yalnızca 'function' anahtar kelimesiyle tanımlanır.",
+                            "Ok fonksiyonları, her zaman parantez içine alınan tek bir parametre alır.",
+                            "Ok fonksiyonları, 'function' anahtar kelimesi yerine '=>' operatörü kullanılarak tanımlanır.",
+                        // Soru 18
+                            "'Promise', yalnızca senkron işlemleri yönetmek için kullanılır.",
+                            "'Promise', yalnızca bir kez döndürülebilir ve daha sonra değiştirilemez.",
+                            "'Promise', asenkron işlemleri yönetmek için kullanılan bir yapıdır.",
+                        // Soru 19
+                            "'localStorage' ve 'sessionStorage', yalnızca sunucu tarafında kullanılabilir.",
+                            "'localStorage' ve 'sessionStorage', yalnızca bir kez değer atandıktan sonra değiştirilebilir.",
+                            "'localStorage' ve 'sessionStorage', tarayıcıda veri depolamak için kullanılır.",
+                        // Soru 20
+                            "DOM Manipülasyonu, yalnızca tarayıcılar tarafından gerçekleştirilebilir.",
+                            "DOM Manipülasyonu, Java'da bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
+                            "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
+                        ];
+                        
                     sor(sorular, cevaplar);
             } else if(inputvalue == "python"){
                     var sorular = [
