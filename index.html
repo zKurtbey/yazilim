@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılım Bilgini Kanıtla</title>
+</head>
+<body>
+    <main>
+        <div style="text-align: center;" id="ekran">
+            <h1>Yazılım Bilgini Kanıtla</h1>
+            <label for="input">Hangi programlama dilindeki bilgini kanıtlamak istersin?</label>
+            <br>
+            <br>
+            <input list="ototamam" type="text" id="dil" onkeydown="check(event)" autofocus="on" autocomplete="off" placeholder="Geçerli bir dil giriniz..." autocapitalize="words" />
+            <datalist id="ototamam">
+                <option value="HTML" class="oneri">HTML</option>
+                <option value="Python" class="oneri">Python</option>
+                <option value="JavaScript" class="oneri">JavaScript</option>
+                <option value="Java" class="oneri">Java</option>
+            </datalist>
+            <br>
+            <br>
+            <output id="sonuc"></output>
+        </div>
+    </main>
+    <script>
+        
+        //input bölgesine ad veriyorum
+
+        var secilendil = document.querySelector("#dil");
+        
+        //input bölgesini her harf girişinde etkileşimli olacak şekilde ayarlıyorum.
+
+        secilendil.addEventListener("input", ()=>{
+            
+            //Eğer Entera basıldıysa, renk değişiminin yeniden iptal olması için rengi siyah yapıyorum.
+
+            document.querySelector("#sonuc").style="color: black; font-weight: normal";
+            
+            //olan dilleri atıyorum.
+
+            var olandiller = ["Python", "HTML", "JavaScript", "Java"];
+            
+            //input değerini arrayde kontrol ederken büyük küçük sıkıntısı yaşamamak için bütün harflerini küçük harfe çeviriyorum
+
+            var inputvalue = secilendil.value.toLowerCase();
+
+            //olandiller arrayinin verilerinin hepsini küçük harfe çeviriyorum.
+
+            var olandillersec = olandiller.map(function (diller) {
+                return diller.toLowerCase();
+            });
+
+            //inputa hiçbir şey yazılmamışken boş kalması için girilen karakter sayacı ekliyorum.
+
+            var lettercount = inputvalue.length;
+            
+            //eğer girilen harf sayısı 0 ise outputu boş bırakıyorum.
+
+            if(lettercount == 0){
+                document.querySelector("#sonuc").textContent = "";
+            } else{
+
+                //eğer 0 değil ise, küçük harfe çevirdiğim olandiller arrayinde küçük harfe çevirdiğim girilen input değerini aratıyorum.
+                
+                if(olandillersec.includes(inputvalue)){
+
+                    //girilen input değerinin olandillersec arrayindeki konumunu buluyorum.
+
+                    var girilendil = olandillersec.indexOf(inputvalue);
+                    
+                    //bulduğum konumdaki veriyi kesip alıyorum.
+
+                    var kesilmisdil = olandiller.splice(girilendil, 1)[0];
+
+                    //input değerindeki dil ismini gerçek büyük harfli yazılışıyla değiştiriyorum.
+
+                    secilendil.value = kesilmisdil;
+                    
+                    //seçilen dili onaylatıyorum.
+
+                    document.querySelector("#sonuc").textContent = kesilmisdil + " dilini seçtiniz. Onaylamak için 'Enter' tuşuna basın.";
+                } else {
+
+                    //eğer girilen değer olandillersec arrayinde yoksa hata ekliyorum. 
+                    
+                    document.querySelector("#sonuc").textContent = inputvalue + " adında bir dil mevcut değildir.";    
+                }
+            } 
+        });
+        
+        
+        //Enter tuşuna basılıp basılmadığını kontrol ediyorum.
+
+        function check(event){
+            
+            //buralarda değişkenleri yeniden atıyorum.
+            
+            var olandiller = ["Python", "HTML", "JavaScript", "Java"];
+
+            var inputvalue = secilendil.value.toLowerCase();
+
+            var olandillersec = olandiller.map(function (diller) {
+                return diller.toLowerCase();
+            });
+
+            //Basılan tuş enter tuşu mu diye kontrol ediyorum.
+
+            if(event.key === 'Enter'){
+
+                //eğer enter tuşuysa, olandillersec arrayinin girilen input değerine sahip olup olmadığını kontrol ediyorum.
+
+                if(olandillersec.includes(inputvalue)){
+                    
+                    //eğer sahipse,
+
+                    //girilen input değerinin olandillersec arrayindeki konumunu buluyorum.
+
+                    var girilendil = olandillersec.indexOf(inputvalue);
+                    
+                    //bulduğum konumdaki veriyi kesip alıyorum.
+
+                    var kesilmisdil = olandiller.splice(girilendil, 1)[0];
+                    
+                    //input üzerindeki odağı kaldırıyorum.
+
+                    secilendil.blur();
+
+                    //inputu değiştirilemez hale getiriyorum.
+
+                    secilendil.setAttribute("readonly", true);
+                    
+                    //outputun rengini yeşil ve ağırlığını kalın yapıyorum.
+                    
+                    document.querySelector("#sonuc").style="color: green; font-weight: bold";
+
+                    //girilen dilin javascript mi olduğunu kontrol ediyorum.
+
+                    if(girilendil == 2){
+
+                        //eğer javascriptse karışmasın diye veriden "java"yı çıkarıyorum.
+                        
+                        var inputvalue = "script";
+
+                        //soruları javascripte göre ayarlayacak ve javascripte özel olan script fonksiyonuna yolluyorum.
+
+                        script();
+                    } else {
+
+                        //eğer javascript değilse input değerini yeniden atıyorum.
+
+                        var inputvalue = secilendil.value.toLowerCase();
+                        
+                        //soruları dillere göre ayarlayacak olan başlat fonksiyonuna yolluyorum.
+
+                        baslat(inputvalue);
+                    }
+
+                    //seçtiği dili kullanıcıya bildiriyorum.
+
+                    document.querySelector("#sonuc").textContent = kesilmisdil + " dili hakkında yarışıyorsunuz.";
+                } else {
+
+                    //eğer olandillersec arrayi girilen değeri içermiyorsa yazıyı kırmızı ve kalın yapıyorum.
+
+                    document.querySelector("#sonuc").style="color: red; font-weight: bold";
+                }
+            }
+        }
+        
+        
+        //girilen değerlere göre soruları atıyorum.
+
+        function baslat(inputvalue){
+            var java = "java";
+            if (inputvalue == "html") {
+                var sorular = [
+                    "HTML'in açılımı nedir?",
+                    "HTML ne için kullanılır?",
+                    "HTML, ne anlama gelir ve neyi temsil eder?",
+                    "HTML dosyaları hangi dosya uzantısına sahiptir?",
+                    "HTML belgeleri, hangi iki temel unsurdan oluşur?",
+                    "HTML'de kullanılan başlık etiketleri nelerdir ve ne amaçla kullanılır?",
+                    "HTML'de 'div' ve 'span' etiketleri ne işe yarar?",
+                    "'href' ve 'src' HTML etiketleri neyi belirtir ve nasıl kullanılır?",
+                    "HTML'de 'alt' etiketi ne amaçla kullanılır?",
+                    "HTML form elemanları nelerdir ve her birinin görevi nedir?",
+                    "HTML'de 'table' etiketi ne işe yarar ve nasıl kullanılır?",
+                    "'DOCTYPE' nedir ve HTML belgesinde neden önemlidir?",
+                    "HTML'de 'ul' ve 'ol' etiketleri arasındaki fark nedir?",
+                    "'id' ve 'class' HTML öznitelikleri ne işe yarar?",
+                    "HTML'de 'meta' etiketi ne amaçla kullanılır?",
+                    "HTML sayfalarında 'style' etiketi neyi ifade eder?",
+                    "HTML'de 'header', 'footer' ve 'nav' etiketleri ne işe yarar?",
+                    "'iframe' etiketi ne amaçla kullanılır ve nasıl kullanılır?",
+                    "'input' etiketi ne amaçla kullanılır ve çeşitleri nelerdir?",
+                    "HTML'de 'a' etiketi neyi temsil eder ve ne işe yarar?",
+                    "'textarea' etiketi ne amaçla kullanılır?",
+                    "HTML sayfalarında 'img' etiketi neyi ifade eder ve nasıl kullanılır?"
+                ];
+                var cevaplar = [
+                    "Hypertext Markup Language", 
+                    "Website oluşturmak", 
+                    "HTML, HyperText Markup Language'ın kısaltmasıdır ve web sayfalarını yapmak için kullanılan bir işaretleme dilidir.",
+                    "HTML dosyaları '.html' uzantısına sahiptir.",
+                    "HTML belgeleri, başlık (head) ve gövde (body) olmak üzere iki temel unsurdan oluşur.",
+                    "Başlık etiketleri <h1> ila <h6> arasında değişir ve başlık seviyesini belirtmek için kullanılır.",
+                    "'div' ve 'span' etiketleri, HTML belgesinde içeriği gruplamak için kullanılır. 'div', blok düzeyinde içeriği gruplar, 'span' ise satır düzeyinde içeriği gruplar.",
+                    "'href' bir bağlantının hedefini (linkin gideceği URL'yi) belirtir, 'src' ise bir resmin veya başka bir içeriğin kaynağını belirtir.",
+                    "'alt' etiketi, bir resmin açıklamasını sağlar ve resim yüklenemediğinde görüntülenen metni temsil eder.",
+                    "HTML form elemanları, kullanıcıdan veri almak veya göndermek için kullanılır. Örnek olarak 'input', 'textarea', 'select' gibi elemanlar bulunur.",
+                    "'table' etiketi, tablo oluşturmak için kullanılır. Verileri düzenli bir biçimde göstermek için kullanılır.",
+                    "'DOCTYPE', belgenin türünü ve sürümünü belirtir. Doğru belirtilmesi, tarayıcının doğru bir şekilde belgeyi işlemesine yardımcı olur.",
+                    "'ul' (unordered list) ve 'ol' (ordered list) etiketleri listeleri temsil eder. 'ul' etiketi sırasız, 'ol' etiketi ise sıralı bir liste oluşturur.",
+                    "'id' ve 'class' öznitelikleri, belirli HTML öğelerine kimlik ve sınıf tanımları eklemek için kullanılır.",
+                    "'meta' etiketi, web sayfasının meta verilerini tanımlar. Meta veriler, sayfanın açıklaması, anahtar kelimeleri, karakter seti gibi bilgileri içerir.",
+                    "'style' etiketi, HTML belgesindeki bir öğenin stilini tanımlar. CSS kodları bu etiket içerisine yerleştirilir.",
+                    "'header', 'footer' ve 'nav' etiketleri, sayfa bölümlerini belirtmek için kullanılır. 'header', sayfa başlığını veya başlık kısmını belirtirken, 'footer' sayfa alt kısmını temsil eder ve 'nav' ise gezinme bağlantılarını içerir.",
+                    "'iframe' etiketi, başka bir web sayfasını içine gömmek için kullanılır.",
+                    "'input' etiketi, kullanıcıdan bilgi almak için kullanılır. Farklı türleri vardır, örneğin 'text', 'password', 'checkbox' gibi.",
+                    "'a' etiketi, bir bağlantıyı (linki) belirtmek için kullanılır.",
+                    "'textarea' etiketi, çok satırlı metin girişi için kullanılır.",
+                    "'img' etiketi, bir resmin sayfada görüntülenmesini sağlar. 'src' özniteliği, resmin URL'sini belirtir.",
+                    ];
+                    sor(sorular, cevaplar);
+            } else if(inputvalue == java){
+                    var sorular = ["Java ne için kullanılır?", "Java programlama dilinde ekrana nasıl yazı yazdırılır?"];
+                    var cevaplar = ["Oyun geliştirmek", "System.out.println"];
+                    sor(sorular, cevaplar);
+            } else if(inputvalue == "python"){
+                    var sorular = [
+                        "Python kim tarafından geliştirilmiştir?",
+                        "Pythonun kullanım sebeplerinden birisi nedir?",
+                        "Python nedir ve hangi alanlarda kullanılır?",
+                        "Python'da değişkenler nasıl tanımlanır?",
+                        "Python'da hangi veri tipleri bulunur ve bunlar nelerdir?",
+                        "Python'da 'if', 'elif' ve 'else' ifadeleri ne işe yarar?",
+                        "Python'da 'for' döngüsü nasıl kullanılır?",
+                        "Python'da 'while' döngüsü ne işe yarar?",
+                        "Python'da bir liste nasıl oluşturulur ve elemanlarına nasıl erişilir?",
+                        "Python'da bir sözlük (dictionary) nasıl oluşturulur ve kullanılır?",
+                        "Python'da fonksiyonlar nasıl tanımlanır ve kullanılır?",
+                        "Python'da bir dosyadan veri okumak ve yazmak için hangi fonksiyonlar kullanılır?",
+                        "Python'da 'try', 'except' ve 'finally' blokları ne işe yarar?",
+                        "Python'da modül nedir ve nasıl kullanılır?",
+                        "Python'da bir sınıf (class) nasıl tanımlanır?",
+                        "Python'da 'inheritance' (miras alma) nedir ve nasıl kullanılır?",
+                        "Python'da 'lambda' ifadeleri ne işe yarar?",
+                        "Python'da 'map' ve 'filter' fonksiyonları ne işe yarar?",
+                        "Python'da 'pip' nedir ve nasıl kullanılır?",
+                        "Python'da 'virtual environment' (sanal ortam) nedir ve neden kullanılır?",
+                        "Python'da 'list comprehension' nedir ve nasıl kullanılır?",
+                        "Python'da 'module' ve 'package' arasındaki fark nedir?"
+                    ];
+                    var cevaplar = [
+                        "bilmemne", 
+                        "Hızlı olması",
+                        "Python, kullanımı kolay ve genel amaçlı bir programlama dilidir. Bilimsel hesaplamalardan web geliştirmeye kadar çeşitli alanlarda kullanılır.",
+                        "Python'da değişkenler, 'var', 'let' veya 'const' anahtar kelimeleriyle tanımlanır.",
+                        "Python'da temel veri tipleri arasında 'integer', 'float', 'string', 'boolean', 'list', 'tuple', 'dictionary' gibi tipler bulunur.",
+                        "'if', 'elif' ve 'else' ifadeleri, koşullu ifadeleri kontrol etmek için kullanılır. Bir koşulun doğru olup olmadığını kontrol eder ve buna göre farklı işlemler yapılmasını sağlar.",
+                        "'for' döngüsü, bir liste veya aralık üzerinde yineleme yapmak için kullanılır.",
+                        "'while' döngüsü, belirli bir koşul doğru olduğu sürece tekrarlanan bir işlem kümesini yürütmek için kullanılır.",
+                        "Bir liste, köşeli parantez içine alınan ve virgülle ayrılan öğelerden oluşan bir veri yapısıdır. Elemanlara indeks numarası ile erişilir.",
+                        "Bir sözlük (dictionary), anahtar-değer çiftleri içeren bir veri yapısıdır. Anahtarlar benzersiz olmalıdır ve değerlere anahtarlar aracılığıyla erişilir.",
+                        "Fonksiyonlar 'function' anahtar kelimesiyle tanımlanır ve çağrıldığında belirli bir işlemi gerçekleştirir. Parametreler alabilir ve bir değer döndürebilir.",
+                        "Dosyadan veri okumak için 'fs' modülü kullanılır ve veri yazmak için de 'fs' modülü veya 'writeFileSync' gibi fonksiyonlar kullanılır.",
+                        "'try', 'except' ve 'finally' blokları, hata yakalama ve işleme için kullanılır. 'try' bloğunda potansiyel hata oluşturabilecek kodlar yer alır ve 'except' bloğu hataları ele alır.",
+                        "Modüller, Python kodunu başka bir dosyadan içe aktarmak için kullanılır. Modüller, işlevleri, sınıfları ve değişkenleri içerebilir.",
+                        "Bir sınıf, nesneleri tanımlamak için kullanılan bir yapıdır. Oluşturulan nesneler, sınıfın özelliklerini ve metodlarını miras alır.",
+                        "'Lambda' ifadeleri, küçük anonim fonksiyonlar oluşturmak için kullanılır.",
+                        "'map' ve 'filter' fonksiyonları, bir dizi veri üzerinde işlem yapmak için kullanılır. 'map', bir fonksiyonu veri üzerinde uygular ve sonuçları bir liste olarak döndürür; 'filter', bir koşula uyan öğeleri filtreler.",
+                        "'pip', Python için paket yöneticisidir. Üçüncü taraf paketlerini yüklemek ve yönetmek için kullanılır.",
+                        "'Virtual environment' (sanal ortam), Python projesinin bağımlılıklarını izole etmek için kullanılır. Farklı projelerde farklı paket sürümleri kullanmak için idealdir.",
+                        "'List comprehension', bir liste oluşturmanın kısa ve özlü bir yoludur. Bir döngüyü tek bir satırda ifade eder.",
+                        "'Module', Python dosyasıdır ve birçok fonksiyonu, sınıfı veya değişkeni içerebilir. 'Package' ise birden fazla modülü içeren bir klasördür."
+                        ];
+                    sor(sorular, cevaplar);
+            }
+        }
+
+
+
+        //javascript için ayrı şekilde soru ekliyorum.
+
+        function script(){
+            var sorular = ["JavaScript ne için kullanılır?", "JavaScript programlama dilinde ekrana nasıl yazı yazdırılır?"];
+            var cevaplar = ["Websitesini etkileşimli hale getirmek", "Console.log"];
+            sor(sorular, cevaplar);
+        }
+
+
+
+        //soruları sayfadaki bölümlerine ekliyorum.
+
+        function sor(sorular, cevaplar){
+            var soru = document.createElement("p");
+            document.querySelector("#ekran").appendChild(soru);
+            var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
+            soru.textContent = rastgelesoru;
+            var cevap = document.createElement("p");
+            document.querySelector("#ekran").appendChild(cevap);
+            var sorununidsi = sorular.indexOf(rastgelesoru);
+            var dogrucevap = cevaplar.splice(sorununidsi, 1);
+            cevap.innerHTML = dogrucevap;
+        }
+    </script>
+</body>
+</html>
