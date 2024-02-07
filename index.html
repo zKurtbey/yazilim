@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
     <style>
-        body{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
+        
         p{
             color: aliceblue;
         }
@@ -776,10 +771,13 @@
             document.querySelector("#ekran").appendChild(soru);
             var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
             soru.textContent = rastgelesoru;
-            var cevap = document.createElement("p");
-            document.querySelector("#ekran").appendChild(cevap);
+            for (let i = 0; i < 4; i++){
+                var choose = document.createElement("p");
+                document.querySelector("#ekran").appendChild(choose);
+            }
             var sorununidsi = sorular.indexOf(rastgelesoru);
             var dogrucevap = cevaplar.splice(sorununidsi, 1);
+            var yanliscevap = 
             cevap.innerHTML = dogrucevap;
         }
     </script>
