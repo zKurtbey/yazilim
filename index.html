@@ -231,7 +231,7 @@
                     "'a' etiketi, bir bağlantıyı (linki) belirtmek için kullanılır.",
                     "'textarea' etiketi, çok satırlı metin girişi için kullanılır.",
                     "'img' etiketi, bir resmin sayfada görüntülenmesini sağlar. 'src' özniteliği, resmin URL'sini belirtir.",
-                    ];
+                ];
 
                     var hatalicevaplar = [
                         // Soru 1
@@ -334,8 +334,6 @@
                         "'class' özelliği, yalnızca bir HTML öğesine uygulanabilir.",
                         "'id' ve 'class' özellikleri, aynı amaçla kullanılır ve birbirinin yerine geçer."
                     ];
-
-                    sor(sorular, cevaplar);
             } else if(inputvalue == java){
                     var sorular = [
                         "Java programlama dilinde ekrana nasıl yazı yazdırılır?",
@@ -467,8 +465,6 @@
                             "DOM Manipülasyonu, Java'da bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
                             "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
                         ];
-
-                    sor(sorular, cevaplar);
             } else if(inputvalue == "python"){
                     var sorular = [
                         "Python kim tarafından geliştirilmiştir?",
@@ -600,8 +596,8 @@
                             "'Regular expressions', yalnızca Python'da kullanılmaz.",
                             "'Regular expressions', yalnızca basit metin işlemleri için kullanılır."
                     ];
-                    sor(sorular, cevaplar);
             }
+            sor(sorular, cevaplar, hatalicevaplar);
         }
 
 
@@ -759,26 +755,35 @@
                 "DOM Manipülasyonu, JavaScript'te bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
                 "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
             ];
-            sor(sorular, cevaplar);
+            sor(sorular, cevaplar, hatalicevaplar);
         }
 
 
 
         //soruları sayfadaki bölümlerine ekliyorum.
 
-        function sor(sorular, cevaplar){
+        function sor(sorular, cevaplar, hatalicevaplar){
             var soru = document.createElement("p");
             document.querySelector("#ekran").appendChild(soru);
             var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
             soru.textContent = rastgelesoru;
+            var chooses = [];
             for (let i = 0; i < 4; i++){
                 var choose = document.createElement("p");
                 document.querySelector("#ekran").appendChild(choose);
+                chooses.push(choose);
             }
             var sorununidsi = sorular.indexOf(rastgelesoru);
             var dogrucevap = cevaplar.splice(sorununidsi, 1);
-            var yanliscevap = 
+            var dogrucevapsikki = chooses[Math.floor(Math.random() * chooses.length)];
+            var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
+            chooses.splice(secilensikkinidsi, 1);
             cevap.innerHTML = dogrucevap;
+            sorununidsi = sorununidsi*3;
+            chooses.forEach((chooses) =>{
+                chooses.innerHTML = hatalicevaplar.splice(sorununidsi, 1);
+                sorununidsi++;
+            });
         }
     </script>
 </body>
