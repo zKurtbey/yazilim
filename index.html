@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
     <style>
-        p{
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        p, h1{
             color: aliceblue;
+        }
+        .choose{
+            cursor: pointer;
+            transition: all .20s ease;
+        }
+        .choose:hover{
+            color: gray;
         }
     </style>
 </head>
-<body style="background-color: rgb(10, 0, 25); margin: 0;">
+<body style="background-color: rgb(3, 0, 7); margin: 0;">
     <main>
         <div style="text-align: center;" id="ekran">
             <h1 style="color: aliceblue">Yazılım Bilgini Kanıtla</h1>
@@ -27,6 +37,7 @@
             <br>
             <br>
             <output id="sonuc" style="color: aliceblue"></output>
+            <div id="sorualani"></div>
         </div>
     </main>
     <script>
@@ -181,8 +192,6 @@
             var java = "java";
             if (inputvalue == "html") {
                 var sorular = [
-                    "HTML'in açılımı nedir?",
-                    "HTML ne için kullanılır?",
                     "HTML, ne anlama gelir ve neyi temsil eder?",
                     "HTML dosyaları hangi dosya uzantısına sahiptir?",
                     "HTML belgeleri, hangi iki temel unsurdan oluşur?",
@@ -205,12 +214,10 @@
                     "HTML sayfalarında 'img' etiketi neyi ifade eder ve nasıl kullanılır?"
                 ];
                 var cevaplar = [
-                    "Hypertext Markup Language", 
-                    "Website oluşturmak", 
                     "HTML, HyperText Markup Language'ın kısaltmasıdır ve web sayfalarını yapmak için kullanılan bir işaretleme dilidir.",
                     "HTML dosyaları '.html' uzantısına sahiptir.",
                     "HTML belgeleri, başlık (head) ve gövde (body) olmak üzere iki temel unsurdan oluşur.",
-                    "Başlık etiketleri <h1> ila <h6> arasında değişir ve başlık seviyesini belirtmek için kullanılır.",
+                    "Başlık etiketleri <'h1'> ila <'h6'> arasında değişir ve başlık seviyesini belirtmek için kullanılır.",
                     "'div' ve 'span' etiketleri, HTML belgesinde içeriği gruplamak için kullanılır. 'div', blok düzeyinde içeriği gruplar, 'span' ise satır düzeyinde içeriği gruplar.",
                     "'href' bir bağlantının hedefini (linkin gideceği URL'yi) belirtir, 'src' ise bir resmin veya başka bir içeriğin kaynağını belirtir.",
                     "'alt' etiketi, bir resmin açıklamasını sağlar ve resim yüklenemediğinde görüntülenen metni temsil eder.",
@@ -231,103 +238,107 @@
 
                 var hatalicevaplar = [
                     // Soru 1
-                    "'HTML, yalnızca web tarayıcılarında kullanılır.",
-                    "'HTML, sadece yazı tipi ve renkleri belirtmek için kullanılır.",
+                    "'HTML, yalnızca yazı tipi ve renkleri belirtmek için kullanılır.",
                     "'HTML, yalnızca internet bağlantısı olmayan cihazlarda çalışır.",
+                    "'HTML, yalnızca web tarayıcılarında kullanılır.",
+
                     // Soru 2
-                    "'HTML'in temel özellikleri arasında anlaşılabilir bir sözdizimi yoktur.",
-                    "'HTML, yalnızca belirli bir işletim sisteminde çalışabilir.",
-                    "'HTML, yalnızca resim dosyalarını düzenlemek için kullanılır.",
+                    "'HTML dosyaları, .css uzantısına sahiptir.",
+                    "'HTML dosyaları, .exe uzantısına sahiptir.",
+                    "'HTML dosyaları, .jpg uzantısına sahiptir.",
+
                     // Soru 3
-                    "'HTML, 2000'li yıllarda yaygınlaşmaya başlamıştır.",
-                    "'HTML, ilk olarak Google tarafından geliştirilmiştir.",
-                    "'HTML, 2010'lu yıllarda popülerlik kazanmıştır.",
+                    "'HTML belgeleri, yalnızca metin içerir.",
+                    "'HTML belgeleri, yalnızca resimler içerir.",
+                    "'HTML belgeleri, yalnızca görsel içerikler içerir.",
+
                     // Soru 4
-                    "'HTML'de başlık etiketi, tarayıcı sekmesinde görüntülenen metni temsil etmez.",
                     "'HTML'de başlık etiketi, yalnızca görsel bir işlevi vardır.",
                     "'HTML'de başlık etiketi, yalnızca web sayfasının sonunda kullanılır.",
+                    "'HTML'de başlık etiketi, tarayıcı sekmesinde görüntülenen metni temsil etmez.",
+
                     // Soru 5
-                    "'HTML'de başlık seviyeleri h1'den h10'a kadar numaralandırılmış on seviyeden oluşur.",
-                    "'HTML'de başlık seviyeleri h6'dan h1'e kadar numaralandırılır.",
-                    "'HTML'de başlık seviyeleri, belirli bir sıraya göre değil, rastgele sıralanır.",
+                    "'HTML'de 'div' ve 'span' etiketleri, yalnızca metin içeriği için kullanılır.",
+                    "'HTML'de 'div' ve 'span' etiketleri, yalnızca görsel içeriği için kullanılır.",
+                    "'HTML'de 'div' ve 'span' etiketleri, HTML belgesinin yapısını belirlemek için kullanılır.",
+
                     // Soru 6
-                    "'HTML'de bağlantı oluşturmak için <link> etiketi kullanılır.",
-                    "'HTML'de bağlantı oluşturmak için <href> etiketi kullanılır.",
-                    "'HTML'de bağlantı oluşturmak için <url> etiketi kullanılır.",
-                    
+                    "'href' ve 'src' etiketleri, yalnızca görsel içerik eklemek için kullanılır.",
+                    "'href' ve 'src' etiketleri, yalnızca metin içerik eklemek için kullanılır.",
+                    "'href' ve 'src' etiketleri, URL'leri belirtmek ve kaynakları göstermek için kullanılır.",
+
                     // Soru 7
-                    "'HTML'de resim eklemek için <picture> etiketi kullanılır.",
-                    "'HTML'de resim eklemek için <src> etiketi kullanılır.",
-                    "'HTML'de resim eklemek için <image> etiketi kullanılır.",
-                    
+                    "'HTML'de 'alt' etiketi, HTML belgesinin yapısını belirler.",
+                    "'HTML'de 'alt' etiketi, tarayıcı tarafından görüntülenen metni temsil eder.",
+                    "'HTML'de 'alt' etiketi, bir görselin alternatif metnini sağlamak için kullanılır.",
+
                     // Soru 8
-                    "'HTML'de numaralandırılmış liste oluşturmak için <ul> etiketi kullanılır.",
-                    "'HTML'de numaralandırılmış liste oluşturmak için <list> etiketi kullanılır.",
-                    "'HTML'de numaralandırılmış liste oluşturmak için <ordered> etiketi kullanılır.",
-                    
+                    "'HTML form elemanları, yalnızca metin içerir.",
+                    "'HTML form elemanları, yalnızca resimler içerir.",
+                    "'HTML form elemanları, kullanıcıdan bilgi almak için kullanılır.",
+
                     // Soru 9
-                    "'HTML'de sırasız liste oluşturmak için <ol> etiketi kullanılır.",
-                    "'HTML'de sırasız liste oluşturmak için <unordered> etiketi kullanılır.",
-                    "'HTML'de sırasız liste oluşturmak için <list> etiketi kullanılır.",
-                    
+                    "'HTML'de 'table' etiketi, yalnızca metin içeriği için kullanılır.",
+                    "'HTML'de 'table' etiketi, tablolar oluşturmak için kullanılır.",
+                    "'HTML'de 'table' etiketi, sadece görsel içeriği düzenlemek için kullanılır.",
+
                     // Soru 10
-                    "'HTML'de tablo oluşturmak için <table>, <tr>, <tc> ve <th> etiketleri kullanılır.",
-                    "'HTML'de tablo oluşturmak için <grid> etiketi kullanılır.",
-                    "'HTML'de tablo oluşturmak için <format> etiketi kullanılır.",
-                    
+                    "'DOCTYPE', yalnızca HTML belgesinin yapısını belirler.",
+                    "'DOCTYPE', yalnızca web tarayıcılarında görüntülenir.",
+                    "'DOCTYPE', HTML belgesinin doğru biçimde yorumlanmasını sağlar ve tarayıcıya belgenin hangi HTML sürümüne uygun olduğunu bildirir.",
+
                     // Soru 11
-                    "'HTML'de form oluşturmak için <input> etiketi kullanılır.",
-                    "'HTML'de form oluşturmak için <form> etiketi kullanılmaz.",
-                    "'HTML'de form oluşturmak için <textarea> etiketi kullanılır.",
-                    
+                    "'HTML'de 'ul' ve 'ol' etiketleri, aynı işlevi yerine getirir.",
+                    "'HTML'de 'ul' ve 'ol' etiketleri, sırasız ve numaralandırılmış liste oluşturmak için kullanılır.",
+                    "'HTML'de 'ul' ve 'ol' etiketleri, yalnızca metin içeriği için kullanılır.",
+
                     // Soru 12
-                    "'HTML'de metin girişi alanı oluşturmak için <textbox> etiketi kullanılır.",
-                    "'HTML'de metin girişi alanı oluşturmak için <text> etiketi kullanılır.",
-                    "'HTML'de metin girişi alanı oluşturmak için <input> etiketi kullanılmaz.",
-                    
+                    "'id' ve 'class' özellikleri, HTML belgesinin yapısını belirler.",
+                    "'id' ve 'class' özellikleri, yalnızca metin içeriği için kullanılır.",
+                    "'id' ve 'class' özellikleri, HTML öğelerini belirlemek ve stil uygulamak için kullanılır.",
+
                     // Soru 13
-                    "'HTML'de metin alanı oluşturmak için <text> etiketi kullanılır.",
-                    "'HTML'de metin alanı oluşturmak için <input> etiketi kullanılır.",
-                    "'HTML'de metin alanı oluşturmak için <textbox> etiketi kullanılır.",
-                    
+                    "'HTML'de 'meta' etiketi, yalnızca görsel içerik eklemek için kullanılır.",
+                    "'HTML'de 'meta' etiketi, HTML belgesinin yapısını belirler.",
+                    "'HTML'de 'meta' etiketi, belgenin meta verilerini sağlamak için kullanılır.",
+
                     // Soru 14
-                    "'HTML'de buton oluşturmak için <btn> etiketi kullanılır.",
-                    "'HTML'de buton oluşturmak için <input> etiketi kullanılır.",
-                    "'HTML'de buton oluşturmak için <submit> etiketi kullanılır.",
-                    
+                    "'style' etiketi, HTML belgesinin yapısını belirler.",
+                    "'style' etiketi, yalnızca metin içeriği düzenler.",
+                    "'style' etiketi, HTML belgesine dahil edilen CSS kodlarını içerir.",
+
                     // Soru 15
-                    "'<div> ve <span> etiketleri, HTML'de içeriği düzenlemek için kullanılır.",
-                    "'<div> ve <span> etiketleri, yalnızca metin içeriği için kullanılır.",
-                    "'<div> ve <span> etiketleri, yalnızca görsel içeriği için kullanılır.",
-                    
+                    "'header', 'footer' ve 'nav' etiketleri, yalnızca metin içeriği düzenler.",
+                    "'header', 'footer' ve 'nav' etiketleri, yalnızca görsel içeriği düzenler.",
+                    "'header', 'footer' ve 'nav' etiketleri, belirli bölümleri tanımlamak için kullanılır.",
+
                     // Soru 16
-                    "'CSS, HTML belgesinin yapısını belirlemek için kullanılır.",
-                    "'CSS, yalnızca JavaScript dosyalarında kullanılır.",
-                    "'CSS, HTML'de yer alır ve HTML belgesine doğrudan eklenir.",
-                    
+                    "'iframe' etiketi, yalnızca metin içeriği düzenlemek için kullanılır.",
+                    "'iframe' etiketi, başka bir HTML belgesini içerir ve gömülü içerik sağlar.",
+                    "'iframe' etiketi, yalnızca görsel içeriği düzenlemek için kullanılır.",
+
                     // Soru 17
-                    "'HTML'de meta etiketleri, tarayıcı tarafından görüntülenen metinleri temsil eder.",
-                    "'HTML'de meta etiketleri, HTML belgesinin yapısını belirler.",
-                    "'HTML'de meta etiketleri, yalnızca görsel içerik eklemek için kullanılır.",
-                    
+                    "'input' etiketi, yalnızca metin içeriği düzenlemek için kullanılır.",
+                    "'input' etiketi, yalnızca resimler içerir.",
+                    "'input' etiketi, kullanıcıdan bilgi almak için kullanılır ve farklı türleri vardır.",
+
                     // Soru 18
-                    "'HTML5 ile birlikte gelen yeni özellikler arasında video ve ses desteği bulunmaz.",
-                    "'HTML5 ile birlikte gelen yeni özellikler, yalnızca belirli bir tarayıcıda çalışır.",
-                    "'HTML5 ile birlikte gelen yeni özellikler, yalnızca mobil cihazlarda kullanılır.",
-                    
+                    "'a' etiketi, yalnızca metin içeriği düzenler.",
+                    "'a' etiketi, bir bağlantıyı belirtir ve kullanıcıyı başka bir URL'ye yönlendirir.",
+                    "'a' etiketi, yalnızca görsel içeriği düzenler.",
+
                     // Soru 19
-                    "'Semantik etiketler, HTML belgesinin yapısını daha anlamlı hale getirmez.",
-                    "'Semantik etiketler, yalnızca görsel içeriği düzenlemek için kullanılır.",
-                    "'Semantik etiketler, yalnızca tarayıcı tarafından görüntülenen metinleri temsil eder.",
-                    
+                    "'textarea' etiketi, yalnızca metin içeriği düzenlemek için kullanılır.",
+                    "'textarea' etiketi, kullanıcıdan çok satırlı metin girişi almak için kullanılır.",
+                    "'textarea' etiketi, yalnızca görsel içeriği düzenlemek için kullanılır.",
+
                     // Soru 20
-                    "'id' özelliği, bir HTML öğesini birden fazla kez tanımlamak için kullanılır.",
-                    "'class' özelliği, yalnızca bir HTML öğesine uygulanabilir.",
-                    "'id' ve 'class' özellikleri, aynı amaçla kullanılır ve birbirinin yerine geçer."
+                    "'img' etiketi, yalnızca metin içeriği düzenler.",
+                    "'img' etiketi, bir resmi belirtir ve HTML sayfasına görsel içerik ekler.",
+                    "'img' etiketi, yalnızca görsel içeriği düzenler."
                 ];
             } else if(inputvalue == java){
                 var sorular = [
-                    "Java programlama dilinde ekrana nasıl yazı yazdırılır?",
                     "Java nedir ve hangi alanlarda kullanılır?",
                     "Java'nın özellikleri nelerdir?",
                     "Java programlama dilinin tarihçesi hakkında bilgi verir misiniz?",
@@ -350,7 +361,6 @@
                     "Java'da 'Lambda Expressions' (Lambda İfadeleri) nasıl kullanılır?"
                 ];
                 var cevaplar = [
-                    "System.out.println",
                     "Java, Nesne Yönelimli Programlama (OOP) prensiplerine dayalı, geniş bir kullanıma sahip, platform bağımsız bir programlama dilidir. Özellikle büyük ölçekli yazılım projelerinde, web uygulamalarında, oyun geliştirmede ve mobil uygulama geliştirmede sıklıkla kullanılır.",
                     "Java'nın özellikleri arasında platform bağımsızlık, güvenlik, taşınabilirlik, çoklu iş parçacığı desteği, dinamik bellek yönetimi, nesne yönelimli programlama (OOP), kolay anlaşılabilir syntax ve geniş kütüphane desteği yer alır.",
                     "Java, 1990'ların başında James Gosling ve Sun Microsystems ekibi tarafından geliştirilmeye başlanmıştır. İlk olarak 'Oak' olarak adlandırılan dil, daha sonra 'Java' olarak yeniden adlandırılmıştır.",
@@ -374,90 +384,107 @@
                 ];
                 var hatalicevaplar = [
                     // Soru 1
-                        "Java, yalnızca web tarayıcılarında kullanılır.",
-                        "Java, sadece mobil uygulamalar için kullanılır.",
-                        "Java, yalnızca veri tabanı yönetimi için kullanılır.",
+                    "'Java, yalnızca oyun geliştirme alanında kullanılır.",
+                    "'Java, yalnızca mobil uygulama geliştirme için kullanılır.",
+                    "'Java, yalnızca veritabanı yönetimi için kullanılır.",
+
                     // Soru 2
-                        "Java'nın temel özellikleri arasında platform bağımlı olması vardır.",
-                        "Java, nesne yönelimli bir dil değildir.",
-                        "Java, sadece Windows işletim sistemi üzerinde çalışabilir.",
+                    "'Java, statik tiplere sahip bir dildir.",
+                    "'Java, platform bağımsız bir dildir.",
+                    "'Java, sadece web tarayıcılarında çalışır.",
+
                     // Soru 3
-                        "Java, 1970'li yıllarda geliştirilmiştir.",
-                        "Java, ilk olarak IBM şirketi tarafından yayınlanmıştır.",
-                        "Java, 2010'lu yıllarda popülerlik kazanmıştır.",
+                    "'Java, 1990'larda Microsoft tarafından geliştirilmiştir.",
+                    "'Java, 1980'lerde Oracle şirketi tarafından yayınlanmıştır.",
+                    "'Java, 2000'lerin başında popülerlik kazanmıştır.",
+
                     // Soru 4
-                        "Değişken tanımlama için 'int' anahtar kelimesi kullanılır.",
-                        "Değişkenler, her zaman 'var' anahtar kelimesiyle tanımlanmalıdır.",
-                        "Değişkenler, her zaman 'string' tipinde tanımlanmalıdır.",
+                    "'Java, yalnızca Windows işletim sistemlerinde çalışır.",
+                    "'Java, farklı işletim sistemlerinde aynı kodun çalışmasını sağlayan bir sanal makine kullanır.",
+                    "'Java, yalnızca Linux işletim sisteminde uyumludur.",
+
                     // Soru 5
-                        "Java'da sadece 'integer' ve 'double' veri tipleri bulunur.",
-                        "Java'da sadece 'array' ve 'list' veri tipleri bulunur.",
-                        "Java'da sadece 'string' ve 'boolean' veri tipleri bulunur.",
+                    "'Java'da sadece 'string' ve 'number' veri tipleri bulunur.",
+                    "'Java'da veri tipleri, değişkenlerin türünü belirtmek için kullanılmaz.",
+                    "'Java'da 'boolean' veri tipi bulunmaz.",
+
                     // Soru 6
-                        "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
-                        "'else if' ifadesi, yalnızca bir koşulu kontrol eder.",
-                        "'else' ifadesi, her zaman bir koşulun doğru olması durumunda çalışır.",
+                    "'Java'da nesne yönelimli programlama, sadece fonksiyonlarla çalışmayı içerir.",
+                    "'Java'da nesne yönelimli programlama, nesneleri kullanmayı gerektirmez.",
+                    "'Java'da nesne yönelimli programlama, sınıfları ve nesneleri kullanarak programlama yaklaşımıdır.",
+
                     // Soru 7
-                        "'for' döngüsü, yalnızca belirli bir koşul sağlandığında çalışır.",
-                        "'while' döngüsü, belirli bir sayıda tekrarlar.",
-                        "'for' döngüsü, bir koşul sağlandığında çalışır ve ardından koşul kontrol edilir.",
+                    "'Java'da sınıflar, yalnızca bir özellik içerir ve yöntemler kullanılmaz.",
+                    "'Java'da sınıflar, bir araya gelmiş veri ve işlevsellik içerir.",
+                    "'Java'da sınıflar, sadece bir yöntemi içerebilir.",
+
                     // Soru 8
-                        "Dizi oluşturmak için 'array' anahtar kelimesi kullanılır.",
-                        "Dizi elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
-                        "Dizi oluştururken, elemanlar parantez içine alınmaz.",
+                    "'Java'da 'extends', arayüzler arasında kalıtımı sağlar.",
+                    "'Java'da 'implements', bir sınıfın başka bir sınıftan kalıtım almasını sağlar.",
+                    "'Java'da 'extends', bir sınıfın birden fazla arayüzü uygulamasını sağlar.",
+
                     // Soru 9
-                        "Nesne oluşturmak için 'nesne' anahtar kelimesi kullanılır.",
-                        "Nesneler, her zaman köşeli parantez içinde tanımlanır.",
-                        "Nesneler, sadece integer anahtarlarla tanımlanabilir.",
+                    "'Java'da 'interface', yalnızca soyut sınıflar için kullanılır.",
+                    "'Java'da 'interface', sınıflar arasında kalıtımı sağlar.",
+                    "'Java'da 'interface', metotları tanımlar ancak uygulamaz.",
+
                     // Soru 10
-                        "Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
-                        "Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
-                        "Fonksiyonlar, sadece 'method' anahtar kelimesi ile tanımlanabilir.",
+                    "'Java'da 'try-catch' bloğu, hata yakalamak için kullanılmaz.",
+                    "'Java'da 'try-catch' bloğu, yalnızca hataları gizler.",
+                    "'Java'da 'try-catch' bloğu, hataları yakalamak ve işlemek için kullanılır.",
+
                     // Soru 11
-                        "'try' bloğu, her zaman hata fırlatır.",
-                        "'catch' bloğu, her zaman hata mesajını gizler.",
-                        "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışır.",
+                    "'Java'da 'static', değişkenlerin değerlerini değiştirmek için kullanılır.",
+                    "'Java'da 'final', değişkenlerin daha sonra başka bir değer atanmasını sağlar.",
+                    "'Java'da 'static', bir sınıf düzeyinde değişken veya yöntemler için kullanılır.",
+
                     // Soru 12
-                        "'let' anahtar kelimesi, değişkenlerin değerlerini değiştiremez.",
-                        "'const' anahtar kelimesi, değişkenlerin değerlerini daha sonra atama yapmadan değiştirilebilir.",
-                        "'var' anahtar kelimesi, blok kapsamı dışında erişilebilir.",
+                    "'Java'da 'thread', aynı anda birden fazla işlemi gerçekleştirmeyi sağlar.",
+                    "'Java'da 'thread', yalnızca ana program tarafından oluşturulabilir.",
+                    "'Java'da 'thread', sadece senkronize işlemleri gerçekleştirmek için kullanılır.",
+
                     // Soru 13
-                        "'map' fonksiyonu, dizi elemanlarını birleştirir.",
-                        "'filter' fonksiyonu, belirli bir koşula uyan dizi elemanlarını çıkarır.",
-                        "'map' fonksiyonu, dizi elemanlarını filtreler.",
+                    "'Java'da 'collection', verileri gruplamak için kullanılan bir veri yapısıdır.",
+                    "'Java'da 'generics', yalnızca belirli veri türlerini destekler.",
+                    "'Java'da 'collection', yalnızca sabit veri boyutlarını destekler.",
+
                     // Soru 14
-                        "'fetch' API'si, sadece sunucu tarafında kullanılır.",
-                        "'fetch' API'si, asenkron işlemleri yönetmek için kullanılır.",
-                        "'fetch' API'si, yalnızca POST istekleri yapmak için kullanılır.",
+                    "'Java'da 'array', dinamik boyutlara sahip veri yapılarıdır.",
+                    "'Java'da 'array', sadece tek boyutlu veri yapılarını destekler.",
+                    "'Java'da 'ArrayList', sabit boyutlara sahip veri yapılarıdır.",
+
                     // Soru 15
-                        "'async' anahtar kelimesi, kodun senkronize çalışmasını sağlar.",
-                        "'await' anahtar kelimesi, sadece 'async' fonksiyonları içinde kullanılabilir.",
-                        "'await' anahtar kelimesi, kodun devam etmeden önce bir işlemin tamamlanmasını bekler.",
+                    "'Java'da 'inheritance', bir sınıfın birden fazla sınıftan kalıtım almasını sağlar.",
+                    "'Java'da 'polymorphism', aynı isimli farklı metotların farklı işlevler yapmasını sağlar.",
+                    "'Java'da 'inheritance', yalnızca bir alt sınıfın üst sınıf özelliklerini almasını sağlar.",
+
                     // Soru 16
-                        "Modüller, JavaScript'te kullanılamaz.",
-                        "Modüller, sadece bir kez tanımlanabilir ve daha sonra değiştirilemez.",
-                        "Modüller, yalnızca 'import' anahtar kelimesi ile çağrılabilir.",
+                    "'Java'da 'serialization', veri işleme işlevlerini gerçekleştirmek için kullanılır.",
+                    "'Java'da 'serialization', nesnelerin ağ üzerinden iletilmesini sağlar.",
+                    "'Java'da 'serialization', veri yapılarının sabit boyutlara dönüştürülmesini sağlar.",
+
                     // Soru 17
-                        "Ok fonksiyonları, yalnızca 'function' anahtar kelimesiyle tanımlanır.",
-                        "Ok fonksiyonları, her zaman parantez içine alınan tek bir parametre alır.",
-                        "Ok fonksiyonları, 'function' anahtar kelimesi yerine '=>' operatörü kullanılarak tanımlanır.",
+                    "'Java'da 'reflection', bir nesnenin sınıfını kontrol etmek için kullanılır.",
+                    "'Java'da 'reflection', yalnızca public alanlara erişimi sağlar.",
+                    "'Java'da 'reflection', nesnelerin özelliklerini dinamik olarak değiştirmeyi sağlar.",
+
                     // Soru 18
-                        "'Promise', yalnızca senkron işlemleri yönetmek için kullanılır.",
-                        "'Promise', yalnızca bir kez döndürülebilir ve daha sonra değiştirilemez.",
-                        "'Promise', asenkron işlemleri yönetmek için kullanılan bir yapıdır.",
+                    "'Java'da 'JVM', platform bağımsız kodun çalıştırılmasını sağlayan bir sanal makinedir.",
+                    "'Java'da 'JVM', yalnızca belirli bir işletim sisteminde çalışır.",
+                    "'Java'da 'JVM', yalnızca web tarayıcıları üzerinde çalışır.",
+
                     // Soru 19
-                        "'localStorage' ve 'sessionStorage', yalnızca sunucu tarafında kullanılabilir.",
-                        "'localStorage' ve 'sessionStorage', yalnızca bir kez değer atandıktan sonra değiştirilebilir.",
-                        "'localStorage' ve 'sessionStorage', tarayıcıda veri depolamak için kullanılır.",
+                    "'Java'da 'Garbage Collection', bellek yönetimini optimize etmek için kullanılır.",
+                    "'Java'da 'Garbage Collection', bellek sızıntılarını önlemek için kullanılır.",
+                    "'Java'da 'Garbage Collection', yalnızca manuel olarak çalıştırılır.",
+
                     // Soru 20
-                        "DOM Manipülasyonu, yalnızca tarayıcılar tarafından gerçekleştirilebilir.",
-                        "DOM Manipülasyonu, Java'da bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
-                        "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
+                    "'Java'da 'Lambda Expressions', yalnızca sayısal işlemlerde kullanılır.",
+                    "'Java'da 'Lambda Expressions', işlevsel programlamada kullanılır ve kısa işlevler için kullanılır.",
+                    "'Java'da 'Lambda Expressions', yalnızca nesne yönelimli programlamada kullanılır."
                 ];
             } else if(inputvalue == "python"){
                 var sorular = [
-                    "Python kim tarafından geliştirilmiştir?",
-                    "Pythonun kullanım sebeplerinden birisi nedir?",
                     "Python nedir ve hangi alanlarda kullanılır?",
                     "Python'da değişkenler nasıl tanımlanır?",
                     "Python'da hangi veri tipleri bulunur ve bunlar nelerdir?",
@@ -480,8 +507,6 @@
                     "Python'da 'module' ve 'package' arasındaki fark nedir?"
                 ];
                 var cevaplar = [
-                    "bilmemne", 
-                    "Hızlı olması",
                     "Python, kullanımı kolay ve genel amaçlı bir programlama dilidir. Bilimsel hesaplamalardan web geliştirmeye kadar çeşitli alanlarda kullanılır.",
                     "Python'da değişkenler, 'var', 'let' veya 'const' anahtar kelimeleriyle tanımlanır.",
                     "Python'da temel veri tipleri arasında 'integer', 'float', 'string', 'boolean', 'list', 'tuple', 'dictionary' gibi tipler bulunur.",
@@ -495,6 +520,7 @@
                     "'try', 'except' ve 'finally' blokları, hata yakalama ve işleme için kullanılır. 'try' bloğunda potansiyel hata oluşturabilecek kodlar yer alır ve 'except' bloğu hataları ele alır.",
                     "Modüller, Python kodunu başka bir dosyadan içe aktarmak için kullanılır. Modüller, işlevleri, sınıfları ve değişkenleri içerebilir.",
                     "Bir sınıf, nesneleri tanımlamak için kullanılan bir yapıdır. Oluşturulan nesneler, sınıfın özelliklerini ve metodlarını miras alır.",
+                    "Inheritance, bir sınıfın diğer bir sınıftan özelliklerini ve davranışlarını devralmasını sağlar.",
                     "'Lambda' ifadeleri, küçük anonim fonksiyonlar oluşturmak için kullanılır.",
                     "'map' ve 'filter' fonksiyonları, bir dizi veri üzerinde işlem yapmak için kullanılır. 'map', bir fonksiyonu veri üzerinde uygular ve sonuçları bir liste olarak döndürür; 'filter', bir koşula uyan öğeleri filtreler.",
                     "'pip', Python için paket yöneticisidir. Üçüncü taraf paketlerini yüklemek ve yönetmek için kullanılır.",
@@ -504,88 +530,107 @@
                     ];
                 var hatalicevaplar = [
                     // Soru 1
-                        "Python, yalnızca web tarayıcılarında kullanılır.",
-                        "Python, sadece veri tabanı yönetimi için kullanılır.",
-                        "Python, yalnızca bilimsel hesaplama için kullanılır.",
+                    "'Python, sadece bilgisayar bilimleri alanında kullanılır.",
+                    "'Python, sadece web tarayıcıları için geliştirilmiştir.",
+                    "'Python, yalnızca büyük ölçekli yazılım projelerinde kullanılır.",
+
                     // Soru 2
-                        "Python'un temel özellikleri arasında anlaşılabilir bir sözdizimi yoktur.",
-                        "Python, sadece belirli işletim sistemlerinde çalışabilir.",
-                        "Python, yalnızca ağ uygulamaları için kullanılır.",
+                    "'Değişken tanımlama için 'variable' anahtar kelimesi kullanılır.",
+                    "'Değişkenler, her zaman 'var' anahtar kelimesiyle tanımlanmalıdır.",
+                    "'Değişkenler, her zaman 'int', 'str' gibi tiplerle başlamalıdır.",
+
                     // Soru 3
-                        "Python, 2000'li yıllarda yaygınlaşmaya başlamıştır.",
-                        "Python, ilk olarak Apple şirketi tarafından geliştirilmiştir.",
-                        "Python, 2010'lu yıllarda popülerlik kazanmıştır.",
+                    "'Python'da sadece 'string' ve 'integer' veri tipleri bulunur.",
+                    "'Python'da sadece 'list' ve 'tuple' veri tipleri bulunur.",
+                    "'Python'da sadece 'float' ve 'boolean' veri tipleri bulunur.",
+
                     // Soru 4
-                        "Değişken tanımlama için 'variable' anahtar kelimesi kullanılır.",
-                        "Değişkenler, her zaman 'let' anahtar kelimesiyle tanımlanmalıdır.",
-                        "Değişkenler, her zaman 'integer' tipinde tanımlanmalıdır.",
+                    "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
+                    "'elif' ifadesi, yalnızca bir koşulu kontrol eder.",
+                    "'else' ifadesi, bir koşulun doğru olması durumunda çalışır.",
+
                     // Soru 5
-                        "Python'da sadece 'integer' ve 'float' veri tipleri bulunur.",
-                        "Python'da sadece 'string' ve 'boolean' veri tipleri bulunur.",
-                        "Python'da sadece 'array' ve 'tuple' veri tipleri bulunur.",
+                    "'for' döngüsü, yalnızca sabit bir sayıda tekrarlar.",
+                    "'for' döngüsü, her zaman bir koşulu kontrol eder.",
+                    "'for' döngüsü, her eleman için bir kez çalışır.",
+
                     // Soru 6
-                        "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
-                        "'elif' ifadesi, yalnızca bir koşulu kontrol eder.",
-                        "'else' ifadesi, her zaman bir koşulun doğru olması durumunda çalışır.",
+                    "'while' döngüsü, belirli bir koşul doğru olduğu sürece çalışır.",
+                    "'while' döngüsü, yalnızca bir kez çalışır.",
+                    "'while' döngüsü, yalnızca belirli bir sayıda tekrarlar.",
+
                     // Soru 7
-                        "'for' döngüsü, belirli bir aralıktaki değerler üzerinde dönmek için kullanılmaz.",
-                        "'while' döngüsü, belirli bir sayıda tekrarlar.",
-                        "'for' döngüsü, bir koşul sağlandığında çalışır ve ardından koşul kontrol edilir.",
+                    "'Liste oluşturmak için 'list' anahtar kelimesi kullanılır.",
+                    "'Liste elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
+                    "'Liste oluştururken, elemanlar köşeli parantez içine alınır.",
+
                     // Soru 8
-                        "Dizi oluşturmak için 'list' anahtar kelimesi kullanılır.",
-                        "Dizi elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
-                        "Dizi oluştururken, elemanlar parantez içine alınmaz.",
+                    "'Sözlük oluşturmak için 'dict' anahtar kelimesi kullanılır.",
+                    "'Sözlükler, her zaman string anahtarlarla tanımlanabilir.",
+                    "'Sözlükler, sadece sayısal anahtarlarla tanımlanabilir.",
+
                     // Soru 9
-                        "Sözlük oluşturmak için 'dictionary' anahtar kelimesi kullanılır.",
-                        "Sözlükler, her zaman köşeli parantez içinde tanımlanır.",
-                        "Sözlükler, sadece string anahtarlarla tanımlanabilir.",
+                    "'Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
+                    "'Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
+                    "'Fonksiyonlar, sadece 'function' anahtar kelimesi ile tanımlanabilir.",
+
                     // Soru 10
-                        "Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
-                        "Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
-                        "Fonksiyonlar, sadece 'function' anahtar kelimesi ile tanımlanabilir.",
+                    "'Veri okumak için 'readData()' ve veri yazmak için 'writeData()' fonksiyonları kullanılır.",
+                    "'Dosyadan veri okumak için 'read()' fonksiyonu kullanılır.",
+                    "'Dosyaya veri yazmak için 'open()' fonksiyonu kullanılır.",
+
                     // Soru 11
-                        "'try' bloğu, her zaman hata fırlatır.",
-                        "'except' bloğu, her zaman hata mesajını gizler.",
-                        "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışmaz.",
+                    "'try' bloğu, her zaman hata fırlatır.",
+                    "'except' bloğu, her zaman hata mesajını gösterir.",
+                    "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışmaz.",
+
                     // Soru 12
-                        "'class', nesne yönelimli programlamada kullanılan bir yapı değildir.",
-                        "'class', yalnızca özelliklerin tanımlandığı bir yapıdır.",
-                        "'class', sadece 'public' özelliklere sahip olabilir.",
+                    "'Modüller, sadece Python içinde tanımlanan özel fonksiyonlardır.",
+                    "'Modüller, yalnızca bir kez tanımlanabilir ve daha sonra değiştirilemez.",
+                    "'Modüller, yalnızca 'require' anahtar kelimesi ile çağrılabilir.",
+
                     // Soru 13
-                        "'Inheritance', bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını almasını sağlar.",
-                        "'Inheritance', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
-                        "'Inheritance', bir sınıfın tüm özelliklerini kopyalayarak çalışır.",
+                    "'Sınıflar, yalnızca 'function' anahtar kelimesiyle tanımlanır.",
+                    "'Sınıflar, her zaman köşeli parantez içinde tanımlanır.",
+                    "'Sınıflar, sadece 'class' anahtar kelimesi ile tanımlanır.",
+
                     // Soru 14
-                        "'Module', Python'da fonksiyon, sınıf ve diğer nesneleri içeren bir dosyadır.",
-                        "'Module', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
-                        "'Module', yalnızca 'import' anahtar kelimesi ile kullanılır.",
+                    "'Inheritance, yalnızca bir kez uygulanabilir.",
+                    "'Inheritance, yalnızca alt sınıfların üst sınıflarını miras almasını sağlar.",
+                    "'Inheritance, sadece alt sınıfların üst sınıflarından metotları miras almasını sağlar.",
+
                     // Soru 15
-                        "'Lambda' fonksiyonları, tek satırda ifade edilirler.",
-                        "'Lambda' fonksiyonları, yalnızca 'map', 'filter', 'reduce' gibi yerlerde kullanılırlar.",
-                        "'Lambda' fonksiyonları, isim verilerek kullanılır.",
+                    "'lambda' ifadeleri, yalnızca belirli bir sınıfta kullanılabilir.",
+                    "'lambda' ifadeleri, sadece tek bir parametre alabilir.",
+                    "'lambda' ifadeleri, küçük ve anonim fonksiyonlar oluşturmak için kullanılır.",
+
                     // Soru 16
-                        "'List comprehension', tek satırda bir döngü ile bir liste oluşturmayı sağlar.",
-                        "'List comprehension', yalnızca sayılar üzerinde işlem yapmak için kullanılır.",
-                        "'List comprehension', yalnızca 'for' döngüsü içinde kullanılır.",
+                    "'map' fonksiyonu, dizi elemanlarını birleştirir.",
+                    "'filter' fonksiyonu, belirli bir koşula uyan dizi elemanlarını çıkarır.",
+                    "'map' fonksiyonu, dizi elemanlarını filtreler.",
+
                     // Soru 17
-                        "'Decorators', bir fonksiyonu veya metodu genişletmek veya değiştirmek için kullanılan bir yapıdır.",
-                        "'Decorators', yalnızca 'class' tanımlamalarında kullanılabilir.",
-                        "'Decorators', yalnızca 'public' fonksiyonlarda kullanılabilir.",
+                    "'pip', yalnızca bir kez yüklenebilir ve daha sonra güncellenemez.",
+                    "'pip', yalnızca özel paketler için kullanılır.",
+                    "'pip', Python paketlerini yönetmek için kullanılan bir paket yöneticisidir.",
+
                     // Soru 18
-                        "'Generator', her çağrıldığında bir sonraki değeri üreten bir yapıdır.",
-                        "'Generator', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
-                        "'Generator', yalnızca sayılarla çalışır.",
+                    "'Virtual environment', yalnızca birden fazla Python sürümüyle çalışan kullanıcılar için kullanılır.",
+                    "'Virtual environment', Python paketlerinin bir projeye özgü olarak izole edilmesini sağlar.",
+                    "'Virtual environment', yalnızca geliştirme aşamasında kullanılır ve gerçek projelerde gereksizdir.",
+
                     // Soru 19
-                        "Dosya işlemleri için 'open()' fonksiyonu kullanılmaz.",
-                        "'close()' fonksiyonu, dosyayı kapatmaz.",
-                        "Dosya işlemleri, yalnızca bir kez gerçekleştirilebilir.",
+                    "'List comprehension', yalnızca listeler için kullanılabilir.",
+                    "'List comprehension', sadece karmaşık koşullar içeren ifadelerde kullanılır.",
+                    "'List comprehension', listeleri döngü yapısından kurtararak daha hızlı ve okunabilir kod yazmayı sağlar.",
+
                     // Soru 20
-                        "'Regular expressions', metinlerde belirli kalıpları aramak, eşleştirmek veya değiştirmek için kullanılan bir yapıdır.",
-                        "'Regular expressions', yalnızca Python'da kullanılmaz.",
-                        "'Regular expressions', yalnızca basit metin işlemleri için kullanılır."
+                    "'Module', yalnızca bir dosya içinde tanımlanan Python kodlarıdır.",
+                    "'Package', yalnızca bir Python modülünü içeren bir klasördür.",
+                    "'Module', yalnızca bir kez tanımlanabilir ve daha sonra değiştirilemez."
                 ];
             }
-            sor(sorular, cevaplar, hatalicevaplar);
+            sikyap(sorular, cevaplar, hatalicevaplar);
         }
 
 
@@ -594,8 +639,6 @@
 
         function script(){
             var sorular = [
-                "JavaScript ne için kullanılır?",
-                "JavaScript programlama dilinde ekrana nasıl yazı yazdırılır?",
                 "JavaScript nedir ve hangi alanlarda kullanılır?",
                 "JavaScript'in temel özellikleri nelerdir?",
                 "JavaScript programlama dilinin tarihçesi nedir?",
@@ -618,8 +661,6 @@
                 "JavaScript'te 'DOM Manipülasyonu' nedir ve nasıl yapılır?"
             ];
             var cevaplar = [
-                "Websitesini etkileşimli hale getirmek",
-                "Console.log",
                 "JavaScript, web tarayıcılarında kullanılan ve web sayfalarını etkileşimli hale getirmek için kullanılan bir programlama dilidir. Ayrıca sunucu tarafında (Node.js gibi) da kullanılabilir.",
                 "JavaScript'in temel özellikleri arasında dinamik tip sistemine sahip olması, nesne yönelimli programlama (OOP) desteği, hafifliği ve tarayıcıda çalışabilmesi yer alır.",
                 "JavaScript, 1995 yılında Netscape Communications tarafından Brendan Eich tarafından geliştirilmeye başlanmıştır.",
@@ -642,7 +683,7 @@
                 "'DOM Manipülasyonu', Document Object Model (Belge Nesne Modeli) üzerinde değişiklikler yapmayı ve etkileşimli web sayfaları oluşturmayı sağlayan tekniktir."
             ];
 
-            var yanlissorular = [
+            var hatalicevaplar = [
                 // Soru 1 - JavaScript nedir ve hangi alanlarda kullanılır?
                 "JavaScript, yalnızca web tarayıcılarında kullanılır.",
                 "JavaScript, yalnızca büyük ölçekli yazılım projelerinde kullanılır.",
@@ -743,36 +784,70 @@
                 "DOM Manipülasyonu, JavaScript'te bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
                 "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
             ];
-            sor(sorular, cevaplar, hatalicevaplar);
+            sikyap(sorular, cevaplar, hatalicevaplar);
         }
 
 
+        var secilensorular = [];
+        function sikyap(sorular, cevaplar, hatalicevaplar){
+            if(secilensorular.length == 20){
+                for (let i = 0; i < 4; i++){
+                    var br = document.createElement("br");
+                    document.querySelector("#sorualani").appendChild(br);
+                }
+                alert("Tebrikler! Bütün soruları bildiniz. Sorularımız bu kadar. Eğer başka dillerde de çözmek isterseniz sayfayı yenileyip tekrardan çözmek istediğiniz dilin adını girebilirsiniz.");
+            } else {
+                var soru = document.createElement("h1");
+                document.querySelector("#sorualani").appendChild(soru);
+                var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
+                if(secilensorular.includes(sorular.indexOf(rastgelesoru))){
+                    console.log("yazdı");
+                }
+                while (secilensorular.includes(sorular.indexOf(rastgelesoru))){
+                    console.log(rastgelesoru + " yazıldı. Yeni soru çekiyorum.");
+                    rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
+                    console.log(rastgelesoru + " yu çektim.");
+                }
+                secilensorular.push(sorular.indexOf(rastgelesoru));
+                console.log(secilensorular);
+                soru.textContent = rastgelesoru;
+                var chooses = [];
+                for (let i = 0; i < 4; i++){
+                    var choose = document.createElement("p");
+                    choose.setAttribute("class", "choose");
+                    document.querySelector("#sorualani").appendChild(choose);
+                    chooses.push(choose);
+                }
+                document.querySelector("#sorualani").style="padding-bottom: 10em";
+                var sorununidsi = sorular.indexOf(rastgelesoru);
+                console.log(sorununidsi);
+                var dogrucevap = cevaplar[sorununidsi];
+                var dogrucevapsikki = chooses[Math.floor(Math.random() * chooses.length)];
+                var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
+                chooses.splice(secilensikkinidsi, 1);
+                dogrucevapsikki.innerHTML = dogrucevap;
+                sorununidsi = sorununidsi*3;
+                console.log(sorununidsi);
+                chooses.forEach((chooses) =>{
+                    chooses.innerHTML = hatalicevaplar[sorununidsi];
+                    sorununidsi = sorununidsi + 1;
+                    console.log(sorununidsi);
+                    chooses.addEventListener("click", ()=>{
+                        alert("yanlış");
+                    });
+                });
 
-        //soruları sayfadaki bölümlerine ekliyorum.
-
-        function sor(sorular, cevaplar, hatalicevaplar){
-            var soru = document.createElement("p");
-            document.querySelector("#ekran").appendChild(soru);
-            var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
-            soru.textContent = rastgelesoru;
-            var chooses = [];
-            for (let i = 0; i < 4; i++){
-                var choose = document.createElement("p");
-                document.querySelector("#ekran").appendChild(choose);
-                chooses.push(choose);
+                for (let i = 0; i < 5; i++){
+                    var br = document.createElement("br");
+                    document.querySelector("#sorualani").appendChild(br);
+                }
+                document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+                dogrucevapsikki.addEventListener("click", ()=>{
+                    sikyap(sorular, cevaplar, hatalicevaplar);
+                    });
+                }
             }
-            var sorununidsi = sorular.indexOf(rastgelesoru);
-            var dogrucevap = cevaplar.splice(sorununidsi, 1);
-            var dogrucevapsikki = chooses[Math.floor(Math.random() * chooses.length)];
-            var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
-            chooses.splice(secilensikkinidsi, 1);
-            dogrucevapsikki.innerHTML = dogrucevap;
-            sorununidsi = sorununidsi*3;
-            chooses.forEach((chooses) =>{
-                chooses.innerHTML = hatalicevaplar.splice(sorununidsi, 1);
-                sorununidsi++;
-            });
-        }
+
     </script>
 </body>
 </html>
