@@ -225,8 +225,53 @@
                     ];
                     sor(sorular, cevaplar);
             } else if(inputvalue == java){
-                    var sorular = ["Java ne için kullanılır?", "Java programlama dilinde ekrana nasıl yazı yazdırılır?"];
-                    var cevaplar = ["Oyun geliştirmek", "System.out.println"];
+                    var sorular = [
+                        "Java programlama dilinde ekrana nasıl yazı yazdırılır?",
+                        "Java nedir ve hangi alanlarda kullanılır?",
+                        "Java'nın özellikleri nelerdir?",
+                        "Java programlama dilinin tarihçesi hakkında bilgi verir misiniz?",
+                        "Java'nın platform bağımsızlığı nasıl sağlanır?",
+                        "Java'da veri tipleri nelerdir ve bunların özellikleri nedir?",
+                        "Java'da nesne yönelimli programlama nedir ve nasıl kullanılır?",
+                        "Java'da bir sınıfın yapısı nasıldır?",
+                        "Java'da 'extends' ve 'implements' kelimeleri arasındaki fark nedir?",
+                        "Java'da 'interface' nedir ve nasıl kullanılır?",
+                        "Java'da 'try-catch' bloğu ne işe yarar ve nasıl kullanılır?",
+                        "Java'da 'static' ve 'final' anahtar kelimeleri ne işe yarar?",
+                        "Java'da 'thread' nedir ve nasıl oluşturulur?",
+                        "Java'da 'collection' ve 'generics' kavramları nedir?",
+                        "Java'da 'array' ve 'ArrayList' arasındaki fark nedir?",
+                        "Java'da 'inheritance' (miras alma) ve 'polymorphism' (çok biçimlilik) nasıl kullanılır?",
+                        "Java'da 'serialization' nedir ve ne işe yarar?",
+                        "Java'da 'reflection' ne işe yarar ve nasıl kullanılır?",
+                        "Java'da 'JVM' (Java Virtual Machine) nedir ve nasıl çalışır?",
+                        "Java'da 'Garbage Collection' (Çöp Toplama) nedir ve nasıl çalışır?",
+                        "Java'da 'Lambda Expressions' (Lambda İfadeleri) nasıl kullanılır?"
+                    ];
+                    console.log(sorular);
+                    var cevaplar = [
+                        "System.out.println",
+                        "Java, Nesne Yönelimli Programlama (OOP) prensiplerine dayalı, geniş bir kullanıma sahip, platform bağımsız bir programlama dilidir. Özellikle büyük ölçekli yazılım projelerinde, web uygulamalarında, oyun geliştirmede ve mobil uygulama geliştirmede sıklıkla kullanılır.",
+                        "Java'nın özellikleri arasında platform bağımsızlık, güvenlik, taşınabilirlik, çoklu iş parçacığı desteği, dinamik bellek yönetimi, nesne yönelimli programlama (OOP), kolay anlaşılabilir syntax ve geniş kütüphane desteği yer alır.",
+                        "Java, 1990'ların başında James Gosling ve Sun Microsystems ekibi tarafından geliştirilmeye başlanmıştır. İlk olarak 'Oak' olarak adlandırılan dil, daha sonra 'Java' olarak yeniden adlandırılmıştır.",
+                        "Java'nın platform bağımsızlığı, Java'nın kaynak kodunun Java Derleyicisi tarafından Java Bytecode'a derlenmesi ve bu Bytecode'ın herhangi bir işletim sisteminde çalışabilen bir Java Sanal Makinesi (JVM) üzerinde çalıştırılabilmesi sayesinde sağlanır.",
+                        "Java'da temel veri tipleri arasında 'int', 'float', 'double', 'boolean', 'char' gibi primitive tipler ve 'String', 'Array', 'Class' gibi referans tipler bulunur. Primitive tipler bellekte değerlerini doğrudan saklarlar, referans tipler ise bellekte yer tutucu olarak bir adres saklarlar.",
+                        "Java'da nesne yönelimli programlama, verileri ve işlevleri birlikte gruplamak ve bunları birimler halinde düzenlemek için kullanılan bir programlama paradigmasıdır. Sınıflar ve nesneler aracılığıyla veri ve işlevsellik bir araya getirilir.",
+                        "Java'da bir sınıf, nesne yönelimli programlamada veri ve işlevleri bir araya getiren bir yapıdır. Bir sınıf içinde veri üyeleri (fields) ve metotlar (methods) yer alır.",
+                        "'extends' ve 'implements' kelimeleri, sınıfın başka bir sınıftan miras almasını veya bir arayüzü uygulamasını sağlar. 'extends' kullanılarak bir sınıf diğer bir sınıftan miras alınırken, 'implements' kullanılarak bir sınıf bir arayüzü uygular.",
+                        "'interface', Java'da bir türdür ve bir sınıfın belirli bir arayüzü uygulamasını sağlar. Bir arayüz, sınıflar arasında ortak bir davranışı tanımlar.",
+                        "'try-catch' bloğu, bir programın çalışması sırasında ortaya çıkabilecek hataları ele almak ve programın kontrolünü devam ettirmek için kullanılır. 'try' bloğu içinde olası bir hata oluşturabilecek kodlar yer alır ve 'catch' bloğu bu hataları yakalar ve işler.",
+                        "'static' anahtar kelimesi, bir sınıfa veya metoda özgü olmayan, sınıfa ait olan veya sınıfın örneklenmesi gerekmeden kullanılabilen özellikleri belirtmek için kullanılır. 'final' anahtar kelimesi ise bir değişkenin değerinin değiştirilemez olduğunu belirtmek için kullanılır.",
+                        "'Thread', Java'da çoklu iş parçacığı (multithreading) oluşturmak için kullanılan bir sınıftır. Çoklu iş parçacıkları, bir Java programının aynı anda birden fazla görevi gerçekleştirmesini sağlar.",
+                        "'Collection' Java'da bir grup nesneyi depolamak için kullanılan bir arayüzü temsil eder. 'Generics' ise Java 5 ile birlikte eklenen bir özelliktir ve koleksiyonlara tip güvenliği sağlar.",
+                        "'Array' ve 'ArrayList', Java'da birden çok öğeyi depolamak için kullanılan veri yapılarıdır. 'Array', sabit boyutlu bir veri koleksiyonunu temsil ederken, 'ArrayList', dinamik olarak boyutu ayarlanabilen bir liste sağlar.",
+                        "'Inheritance' (Miras alma), bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını miras almasıdır. 'Polymorphism' (Çok biçimlilik), aynı isme sahip fakat farklı davranışları olan metotların farklı sınıflarda tanımlanabilmesidir.",
+                        "'Serialization', bir nesneyi dosyaya veya ağ üzerine yazmak için kullanılan bir süreçtir. Nesnelerin dizilmesi (serialization) ve geri dönüşümü (deserialization) yapılarak nesne durumu korunabilir.",
+                        "'Reflection', çalışma zamanında bir sınıfın veya nesnenin yapısını inceleme ve kullanma yeteneğidir. Java'da 'java.lang.reflect' paketi kullanılarak reflection işlemleri gerçekleştirilir.",
+                        "'JVM' (Java Virtual Machine), Java byte kodunu işletim sistemine özgü makine koduna çeviren ve çalıştıran bir yazılım ortamıdır. Java programları JVM üzerinde çalıştırılır.",
+                        "'Garbage Collection' (Çöp Toplama), Java'da bellek yönetimi için otomatik olarak kullanılan bir işlemdir. Java programı çalışırken, artık kullanılmayan nesneleri belirler ve bellekten kaldırır.",
+                        "'Lambda Expressions' (Lambda İfadeleri), Java 8 ile birlikte eklenen bir özelliktir. Bu ifadeler, işlevsel programlama tekniklerini destekler ve kodu daha kısa ve okunabilir hale getirir."
+                    ];
                     sor(sorular, cevaplar);
             } else if(inputvalue == "python"){
                     var sorular = [
