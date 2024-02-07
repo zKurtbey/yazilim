@@ -229,7 +229,108 @@
                     "'img' etiketi, bir resmin sayfada görüntülenmesini sağlar. 'src' özniteliği, resmin URL'sini belirtir.",
                     ];
 
-                    
+                    var hatalicevaplar = [
+                        // Soru 1
+                        "'HTML, yalnızca web tarayıcılarında kullanılır.",
+                        "'HTML, sadece yazı tipi ve renkleri belirtmek için kullanılır.",
+                        "'HTML, yalnızca internet bağlantısı olmayan cihazlarda çalışır.",
+
+                        // Soru 2
+                        "'HTML'in temel özellikleri arasında anlaşılabilir bir sözdizimi yoktur.",
+                        "'HTML, yalnızca belirli bir işletim sisteminde çalışabilir.",
+                        "'HTML, yalnızca resim dosyalarını düzenlemek için kullanılır.",
+
+                        // Soru 3
+                        "'HTML, 2000'li yıllarda yaygınlaşmaya başlamıştır.",
+                        "'HTML, ilk olarak Google tarafından geliştirilmiştir.",
+                        "'HTML, 2010'lu yıllarda popülerlik kazanmıştır.",
+
+                        // Soru 4
+                        "'HTML'de başlık etiketi, tarayıcı sekmesinde görüntülenen metni temsil etmez.",
+                        "'HTML'de başlık etiketi, yalnızca görsel bir işlevi vardır.",
+                        "'HTML'de başlık etiketi, yalnızca web sayfasının sonunda kullanılır.",
+
+                        // Soru 5
+                        "'HTML'de başlık seviyeleri h1'den h10'a kadar numaralandırılmış on seviyeden oluşur.",
+                        "'HTML'de başlık seviyeleri h6'dan h1'e kadar numaralandırılır.",
+                        "'HTML'de başlık seviyeleri, belirli bir sıraya göre değil, rastgele sıralanır.",
+
+                        // Soru 6
+                        "'HTML'de bağlantı oluşturmak için <link> etiketi kullanılır.",
+                        "'HTML'de bağlantı oluşturmak için <href> etiketi kullanılır.",
+                        "'HTML'de bağlantı oluşturmak için <url> etiketi kullanılır.",
+                        
+                        // Soru 7
+                        "'HTML'de resim eklemek için <picture> etiketi kullanılır.",
+                        "'HTML'de resim eklemek için <src> etiketi kullanılır.",
+                        "'HTML'de resim eklemek için <image> etiketi kullanılır.",
+                        
+                        // Soru 8
+                        "'HTML'de numaralandırılmış liste oluşturmak için <ul> etiketi kullanılır.",
+                        "'HTML'de numaralandırılmış liste oluşturmak için <list> etiketi kullanılır.",
+                        "'HTML'de numaralandırılmış liste oluşturmak için <ordered> etiketi kullanılır.",
+                        
+                        // Soru 9
+                        "'HTML'de sırasız liste oluşturmak için <ol> etiketi kullanılır.",
+                        "'HTML'de sırasız liste oluşturmak için <unordered> etiketi kullanılır.",
+                        "'HTML'de sırasız liste oluşturmak için <list> etiketi kullanılır.",
+                        
+                        // Soru 10
+                        "'HTML'de tablo oluşturmak için <table>, <tr>, <tc> ve <th> etiketleri kullanılır.",
+                        "'HTML'de tablo oluşturmak için <grid> etiketi kullanılır.",
+                        "'HTML'de tablo oluşturmak için <format> etiketi kullanılır.",
+                        
+                        // Soru 11
+                        "'HTML'de form oluşturmak için <input> etiketi kullanılır.",
+                        "'HTML'de form oluşturmak için <form> etiketi kullanılmaz.",
+                        "'HTML'de form oluşturmak için <textarea> etiketi kullanılır.",
+                        
+                        // Soru 12
+                        "'HTML'de metin girişi alanı oluşturmak için <textbox> etiketi kullanılır.",
+                        "'HTML'de metin girişi alanı oluşturmak için <text> etiketi kullanılır.",
+                        "'HTML'de metin girişi alanı oluşturmak için <input> etiketi kullanılmaz.",
+                        
+                        // Soru 13
+                        "'HTML'de metin alanı oluşturmak için <text> etiketi kullanılır.",
+                        "'HTML'de metin alanı oluşturmak için <input> etiketi kullanılır.",
+                        "'HTML'de metin alanı oluşturmak için <textbox> etiketi kullanılır.",
+                        
+                        // Soru 14
+                        "'HTML'de buton oluşturmak için <btn> etiketi kullanılır.",
+                        "'HTML'de buton oluşturmak için <input> etiketi kullanılır.",
+                        "'HTML'de buton oluşturmak için <submit> etiketi kullanılır.",
+                        
+                        // Soru 15
+                        "'<div> ve <span> etiketleri, HTML'de içeriği düzenlemek için kullanılır.",
+                        "'<div> ve <span> etiketleri, yalnızca metin içeriği için kullanılır.",
+                        "'<div> ve <span> etiketleri, yalnızca görsel içeriği için kullanılır.",
+                        
+                        // Soru 16
+                        "'CSS, HTML belgesinin yapısını belirlemek için kullanılır.",
+                        "'CSS, yalnızca JavaScript dosyalarında kullanılır.",
+                        "'CSS, HTML'de yer alır ve HTML belgesine doğrudan eklenir.",
+                        
+                        // Soru 17
+                        "'HTML'de meta etiketleri, tarayıcı tarafından görüntülenen metinleri temsil eder.",
+                        "'HTML'de meta etiketleri, HTML belgesinin yapısını belirler.",
+                        "'HTML'de meta etiketleri, yalnızca görsel içerik eklemek için kullanılır.",
+                        
+                        // Soru 18
+                        "'HTML5 ile birlikte gelen yeni özellikler arasında video ve ses desteği bulunmaz.",
+                        "'HTML5 ile birlikte gelen yeni özellikler, yalnızca belirli bir tarayıcıda çalışır.",
+                        "'HTML5 ile birlikte gelen yeni özellikler, yalnızca mobil cihazlarda kullanılır.",
+                        
+                        // Soru 19
+                        "'Semantik etiketler, HTML belgesinin yapısını daha anlamlı hale getirmez.",
+                        "'Semantik etiketler, yalnızca görsel içeriği düzenlemek için kullanılır.",
+                        "'Semantik etiketler, yalnızca tarayıcı tarafından görüntülenen metinleri temsil eder.",
+                        
+                        // Soru 20
+                        "'id' özelliği, bir HTML öğesini birden fazla kez tanımlamak için kullanılır.",
+                        "'class' özelliği, yalnızca bir HTML öğesine uygulanabilir.",
+                        "'id' ve 'class' özellikleri, aynı amaçla kullanılır ve birbirinin yerine geçer."
+                    ];
+
                     sor(sorular, cevaplar);
             } else if(inputvalue == java){
                     var sorular = [
@@ -413,7 +514,7 @@
                         "'Module', Python dosyasıdır ve birçok fonksiyonu, sınıfı veya değişkeni içerebilir. 'Package' ise birden fazla modülü içeren bir klasördür."
                         ];
 
-                    const hatalicevaplar = [
+                    var hatalicevaplar = [
                         // Soru 1
                             "Python, yalnızca web tarayıcılarında kullanılır.",
                             "Python, sadece veri tabanı yönetimi için kullanılır.",
