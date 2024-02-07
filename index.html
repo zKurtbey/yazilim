@@ -330,8 +330,54 @@
         //javascript için ayrı şekilde soru ekliyorum.
 
         function script(){
-            var sorular = ["JavaScript ne için kullanılır?", "JavaScript programlama dilinde ekrana nasıl yazı yazdırılır?"];
-            var cevaplar = ["Websitesini etkileşimli hale getirmek", "Console.log"];
+            var sorular = [
+                "JavaScript ne için kullanılır?",
+                "JavaScript programlama dilinde ekrana nasıl yazı yazdırılır?",
+                "JavaScript nedir ve hangi alanlarda kullanılır?",
+                "JavaScript'in temel özellikleri nelerdir?",
+                "JavaScript programlama dilinin tarihçesi nedir?",
+                "JavaScript'te değişken tanımlama nasıl yapılır?",
+                "JavaScript'te hangi veri tipleri bulunur ve bunlar nelerdir?",
+                "JavaScript'te 'if', 'else if' ve 'else' ifadeleri ne işe yarar?",
+                "JavaScript'te 'for' ve 'while' döngüleri nasıl kullanılır?",
+                "JavaScript'te bir dizi (array) nasıl oluşturulur ve elemanlarına nasıl erişilir?",
+                "JavaScript'te bir nesne (object) nasıl oluşturulur?",
+                "JavaScript'te fonksiyonlar nasıl tanımlanır ve kullanılır?",
+                "JavaScript'te 'try', 'catch' ve 'finally' blokları ne işe yarar?",
+                "JavaScript'te 'let', 'const' ve 'var' arasındaki fark nedir?",
+                "JavaScript'te 'map' ve 'filter' fonksiyonları ne işe yarar?",
+                "JavaScript'te 'fetch' API'si ne işe yarar?",
+                "JavaScript'te 'async' ve 'await' anahtar kelimeleri ne işe yarar?",
+                "JavaScript'te modüller (modules) nedir ve nasıl kullanılır?",
+                "JavaScript'te 'arrow functions' (ok fonksiyonları) nasıl tanımlanır?",
+                "JavaScript'te 'Promise' nedir ve nasıl kullanılır?",
+                "JavaScript'te 'localStorage' ve 'sessionStorage' ne işe yarar?",
+                "JavaScript'te 'DOM Manipülasyonu' nedir ve nasıl yapılır?"
+            ];
+            var cevaplar = [
+                "Websitesini etkileşimli hale getirmek",
+                "Console.log",
+                "JavaScript, web tarayıcılarında kullanılan ve web sayfalarını etkileşimli hale getirmek için kullanılan bir programlama dilidir. Ayrıca sunucu tarafında (Node.js gibi) da kullanılabilir.",
+                "JavaScript'in temel özellikleri arasında dinamik tip sistemine sahip olması, nesne yönelimli programlama (OOP) desteği, hafifliği ve tarayıcıda çalışabilmesi yer alır.",
+                "JavaScript, 1995 yılında Netscape Communications tarafından Brendan Eich tarafından geliştirilmeye başlanmıştır.",
+                "JavaScript'te değişkenler 'var', 'let' ve 'const' anahtar kelimeleriyle tanımlanır.",
+                "JavaScript'te temel veri tipleri arasında 'string', 'number', 'boolean', 'undefined', 'null' ve 'symbol' bulunur. Ayrıca 'object' ve 'function' gibi referans tipleri de vardır.",
+                "'if', 'else if' ve 'else' ifadeleri, koşullu durumları kontrol etmek için kullanılır.",
+                "'for' ve 'while' döngüleri, tekrar eden işlemleri gerçekleştirmek için kullanılır.",
+                "JavaScript'te bir dizi, köşeli parantez içinde virgülle ayrılan öğelerden oluşan bir veri yapısıdır. Elemanlara indeks numarası ile erişilir.",
+                "JavaScript'te bir nesne, anahtar-değer çiftleri içeren bir veri yapısıdır. Anahtarlar (property) ve değerler (value) içerir.",
+                "JavaScript'te fonksiyonlar, 'function' anahtar kelimesiyle tanımlanır ve çağrıldığında belirli bir işlemi gerçekleştirir. Parametreler alabilir ve bir değer döndürebilir.",
+                "'try', 'catch' ve 'finally' blokları, bir programın çalışması sırasında oluşabilecek hataları ele almak ve işlemek için kullanılır.",
+                "'let', 'const' ve 'var' anahtar kelimeleri, değişken tanımlamak için kullanılır. 'let' ve 'const' blok kapsamına sahiptirken, 'var' global veya fonksiyon kapsamına sahiptir.",
+                "'map' ve 'filter' fonksiyonları, bir dizi üzerinde işlem yapmak için kullanılır. 'map', bir dizi elemanı üzerinde bir fonksiyon uygular ve sonuçları yeni bir dizi olarak döndürür; 'filter', bir dizi elemanını belirli bir koşula göre filtreler.",
+                "'fetch' API'si, ağ üzerinden HTTP istekleri yapmak için kullanılır. Özellikle web sayfalarında AJAX çağrıları yapmak için kullanılır.",
+                "'async' ve 'await' anahtar kelimeleri, asenkron işlemleri daha okunabilir bir şekilde yazmak için kullanılır.",
+                "Modüller, JavaScript kodunu organize etmek ve tekrar kullanılabilir parçalara ayırmak için kullanılır. Modüller, 'export' ve 'import' anahtar kelimeleriyle tanımlanır.",
+                "'Arrow functions', kısa ve okunabilir fonksiyonlar oluşturmak için kullanılır. Klasik fonksiyon tanımlamalarından daha kısa bir sözdizimine sahiptir.",
+                "'Promise', JavaScript'te asenkron işlemleri yönetmek için kullanılan bir yapıdır. Bir işlem tamamlandığında veya başarısız olduğunda bir değer döndürür.",
+                "'localStorage' ve 'sessionStorage', tarayıcıda veri depolamak için kullanılan API'lerdir. 'localStorage' verileri kalıcı olarak saklar, 'sessionStorage' ise oturum sona erdiğinde silinir.",
+                "'DOM Manipülasyonu', Document Object Model (Belge Nesne Modeli) üzerinde değişiklikler yapmayı ve etkileşimli web sayfaları oluşturmayı sağlayan tekniktir."
+            ];
             sor(sorular, cevaplar);
         }
 
