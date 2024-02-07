@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
 </head>
-<body>
+<body style="background-color: rgb(10, 0, 25);">
     <main>
         <div style="text-align: center;" id="ekran">
             <h1>Yazılım Bilgini Kanıtla</h1>
@@ -223,6 +223,8 @@
                     "'textarea' etiketi, çok satırlı metin girişi için kullanılır.",
                     "'img' etiketi, bir resmin sayfada görüntülenmesini sağlar. 'src' özniteliği, resmin URL'sini belirtir.",
                     ];
+
+                    
                     sor(sorular, cevaplar);
             } else if(inputvalue == java){
                     var sorular = [
@@ -355,7 +357,7 @@
                             "DOM Manipülasyonu, Java'da bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
                             "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
                         ];
-                        
+
                     sor(sorular, cevaplar);
             } else if(inputvalue == "python"){
                     var sorular = [
@@ -405,6 +407,89 @@
                         "'List comprehension', bir liste oluşturmanın kısa ve özlü bir yoludur. Bir döngüyü tek bir satırda ifade eder.",
                         "'Module', Python dosyasıdır ve birçok fonksiyonu, sınıfı veya değişkeni içerebilir. 'Package' ise birden fazla modülü içeren bir klasördür."
                         ];
+
+                    const hatalicevaplar = [
+                        // Soru 1
+                            "Python, yalnızca web tarayıcılarında kullanılır.",
+                            "Python, sadece veri tabanı yönetimi için kullanılır.",
+                            "Python, yalnızca bilimsel hesaplama için kullanılır.",
+                        // Soru 2
+                            "Python'un temel özellikleri arasında anlaşılabilir bir sözdizimi yoktur.",
+                            "Python, sadece belirli işletim sistemlerinde çalışabilir.",
+                            "Python, yalnızca ağ uygulamaları için kullanılır.",
+                        // Soru 3
+                            "Python, 2000'li yıllarda yaygınlaşmaya başlamıştır.",
+                            "Python, ilk olarak Apple şirketi tarafından geliştirilmiştir.",
+                            "Python, 2010'lu yıllarda popülerlik kazanmıştır.",
+                        // Soru 4
+                            "Değişken tanımlama için 'variable' anahtar kelimesi kullanılır.",
+                            "Değişkenler, her zaman 'let' anahtar kelimesiyle tanımlanmalıdır.",
+                            "Değişkenler, her zaman 'integer' tipinde tanımlanmalıdır.",
+                        // Soru 5
+                            "Python'da sadece 'integer' ve 'float' veri tipleri bulunur.",
+                            "Python'da sadece 'string' ve 'boolean' veri tipleri bulunur.",
+                            "Python'da sadece 'array' ve 'tuple' veri tipleri bulunur.",
+                        // Soru 6
+                            "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
+                            "'elif' ifadesi, yalnızca bir koşulu kontrol eder.",
+                            "'else' ifadesi, her zaman bir koşulun doğru olması durumunda çalışır.",
+                        // Soru 7
+                            "'for' döngüsü, belirli bir aralıktaki değerler üzerinde dönmek için kullanılmaz.",
+                            "'while' döngüsü, belirli bir sayıda tekrarlar.",
+                            "'for' döngüsü, bir koşul sağlandığında çalışır ve ardından koşul kontrol edilir.",
+                        // Soru 8
+                            "Dizi oluşturmak için 'list' anahtar kelimesi kullanılır.",
+                            "Dizi elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
+                            "Dizi oluştururken, elemanlar parantez içine alınmaz.",
+                        // Soru 9
+                            "Sözlük oluşturmak için 'dictionary' anahtar kelimesi kullanılır.",
+                            "Sözlükler, her zaman köşeli parantez içinde tanımlanır.",
+                            "Sözlükler, sadece string anahtarlarla tanımlanabilir.",
+                        // Soru 10
+                            "Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
+                            "Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
+                            "Fonksiyonlar, sadece 'function' anahtar kelimesi ile tanımlanabilir.",
+                        // Soru 11
+                            "'try' bloğu, her zaman hata fırlatır.",
+                            "'except' bloğu, her zaman hata mesajını gizler.",
+                            "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışmaz.",
+                        // Soru 12
+                            "'class', nesne yönelimli programlamada kullanılan bir yapı değildir.",
+                            "'class', yalnızca özelliklerin tanımlandığı bir yapıdır.",
+                            "'class', sadece 'public' özelliklere sahip olabilir.",
+                        // Soru 13
+                            "'Inheritance', bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını almasını sağlar.",
+                            "'Inheritance', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
+                            "'Inheritance', bir sınıfın tüm özelliklerini kopyalayarak çalışır.",
+                        // Soru 14
+                            "'Module', Python'da fonksiyon, sınıf ve diğer nesneleri içeren bir dosyadır.",
+                            "'Module', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
+                            "'Module', yalnızca 'import' anahtar kelimesi ile kullanılır.",
+                        // Soru 15
+                            "'Lambda' fonksiyonları, tek satırda ifade edilirler.",
+                            "'Lambda' fonksiyonları, yalnızca 'map', 'filter', 'reduce' gibi yerlerde kullanılırlar.",
+                            "'Lambda' fonksiyonları, isim verilerek kullanılır.",
+                        // Soru 16
+                            "'List comprehension', tek satırda bir döngü ile bir liste oluşturmayı sağlar.",
+                            "'List comprehension', yalnızca sayılar üzerinde işlem yapmak için kullanılır.",
+                            "'List comprehension', yalnızca 'for' döngüsü içinde kullanılır.",
+                        // Soru 17
+                            "'Decorators', bir fonksiyonu veya metodu genişletmek veya değiştirmek için kullanılan bir yapıdır.",
+                            "'Decorators', yalnızca 'class' tanımlamalarında kullanılabilir.",
+                            "'Decorators', yalnızca 'public' fonksiyonlarda kullanılabilir.",
+                        // Soru 18
+                            "'Generator', her çağrıldığında bir sonraki değeri üreten bir yapıdır.",
+                            "'Generator', yalnızca bir kez kullanılabilir ve daha sonra değiştirilemez.",
+                            "'Generator', yalnızca sayılarla çalışır.",
+                        // Soru 19
+                            "Dosya işlemleri için 'open()' fonksiyonu kullanılmaz.",
+                            "'close()' fonksiyonu, dosyayı kapatmaz.",
+                            "Dosya işlemleri, yalnızca bir kez gerçekleştirilebilir.",
+                        // Soru 20
+                            "'Regular expressions', metinlerde belirli kalıpları aramak, eşleştirmek veya değiştirmek için kullanılan bir yapıdır.",
+                            "'Regular expressions', yalnızca Python'da kullanılmaz.",
+                            "'Regular expressions', yalnızca basit metin işlemleri için kullanılır."
+                    ];
                     sor(sorular, cevaplar);
             }
         }
