@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
     <style>
-        
         p{
             color: aliceblue;
         }
@@ -767,7 +766,7 @@
             var dogrucevapsikki = chooses[Math.floor(Math.random() * chooses.length)];
             var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
             chooses.splice(secilensikkinidsi, 1);
-            cevap.innerHTML = dogrucevap;
+            dogrucevapsikki.innerHTML = dogrucevap;
             sorununidsi = sorununidsi*3;
             chooses.forEach((chooses) =>{
                 chooses.innerHTML = hatalicevaplar.splice(sorununidsi, 1);
