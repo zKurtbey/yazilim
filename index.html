@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
 </head>
-<body style="background-color: rgb(10, 0, 25);">
+<body style="background-color: rgb(10, 0, 25); margin: 0; height: 100dvh;">
     <main>
         <div style="text-align: center;" id="ekran">
-            <h1>Yazılım Bilgini Kanıtla</h1>
-            <label for="input">Hangi programlama dilindeki bilgini kanıtlamak istersin?</label>
+            <h1 style="color: aliceblue">Yazılım Bilgini Kanıtla</h1>
+            <label style="color: aliceblue" for="input">Hangi programlama dilindeki bilgini kanıtlamak istersin?</label>
             <br>
             <br>
             <input list="ototamam" type="text" id="dil" onkeydown="check(event)" autofocus="on" autocomplete="off" placeholder="Geçerli bir dil giriniz..." autocapitalize="words" />
@@ -21,7 +21,7 @@
             </datalist>
             <br>
             <br>
-            <output id="sonuc"></output>
+            <output id="sonuc" style="color: aliceblue"></output>
         </div>
     </main>
     <script>
@@ -36,7 +36,7 @@
             
             //Eğer Entera basıldıysa, renk değişiminin yeniden iptal olması için rengi siyah yapıyorum.
 
-            document.querySelector("#sonuc").style="color: black; font-weight: normal";
+            document.querySelector("#sonuc").style="color: aliceblue; font-weight: normal";
             
             //olan dilleri atıyorum.
 
