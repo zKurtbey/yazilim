@@ -378,6 +378,108 @@
                 "'localStorage' ve 'sessionStorage', tarayıcıda veri depolamak için kullanılan API'lerdir. 'localStorage' verileri kalıcı olarak saklar, 'sessionStorage' ise oturum sona erdiğinde silinir.",
                 "'DOM Manipülasyonu', Document Object Model (Belge Nesne Modeli) üzerinde değişiklikler yapmayı ve etkileşimli web sayfaları oluşturmayı sağlayan tekniktir."
             ];
+
+            var yanlissorular = [
+                // Soru 1 - JavaScript nedir ve hangi alanlarda kullanılır?
+                "JavaScript, yalnızca web tarayıcılarında kullanılır.",
+                "JavaScript, yalnızca büyük ölçekli yazılım projelerinde kullanılır.",
+                "JavaScript, yalnızca sunucu tarafında (backend) kullanılır.",
+
+                // Soru 2 - JavaScript'in temel özellikleri nelerdir?
+                "JavaScript, sadece statik tiplere sahip bir dildir.",
+                "JavaScript, nesne yönelimli programlama (OOP) desteği sağlamaz.",
+                "JavaScript, sadece Windows işletim sistemi üzerinde çalışabilir.",
+
+                // Soru 3 - JavaScript programlama dilinin tarihçesi nedir?
+                "JavaScript, 2000'li yıllarda Microsoft tarafından geliştirilmiştir.",
+                "JavaScript, ilk olarak Oracle şirketi tarafından yayınlanmıştır.",
+                "JavaScript, 1980'li yıllarda geliştirilmeye başlanmıştır.",
+
+                // Soru 4 - JavaScript'te değişken tanımlama nasıl yapılır?
+                "Değişken tanımlama için 'if' anahtar kelimesi kullanılır.",
+                "Değişkenler, her zaman 'let' anahtar kelimesiyle tanımlanmalıdır.",
+                "Değişkenler, her zaman 'string' tipinde tanımlanmalıdır.",
+
+                // Soru 5 - JavaScript'te hangi veri tipleri bulunur ve bunlar nelerdir?
+                "JavaScript'te sadece 'string' ve 'number' veri tipleri bulunur.",
+                "JavaScript'te sadece 'object' ve 'function' veri tipleri bulunur.",
+                "JavaScript'te sadece 'boolean' ve 'undefined' veri tipleri bulunur.",
+
+                // Soru 6 - JavaScript'te 'if', 'else if' ve 'else' ifadeleri ne işe yarar?
+                "'if' ifadesi, koşulları kontrol etmek için kullanılmaz.",
+                "'else if' ifadesi, yalnızca bir koşulu kontrol eder.",
+                "'else' ifadesi, bir koşulun doğru olması durumunda çalışır.",
+
+                // Soru 7 - JavaScript'te 'for' ve 'while' döngüleri nasıl kullanılır?
+                "'for' döngüsü, yalnızca sabit bir sayıda tekrarlar.",
+                "'while' döngüsü, döngü koşulu doğru olduğu sürece çalışır.",
+                "'for' döngüsü, her zaman bir koşulu kontrol eder.",
+
+                // Soru 8 - JavaScript'te bir dizi (array) nasıl oluşturulur ve elemanlarına nasıl erişilir?
+                "Dizi oluşturmak için 'dizi' anahtar kelimesi kullanılır.",
+                "Dizi elemanlarına erişmek için sadece indeks numarası kullanılabilir.",
+                "Dizi oluştururken, elemanlar köşeli parantez içine alınır.",
+
+                // Soru 9 - JavaScript'te bir nesne (object) nasıl oluşturulur?
+                "Nesne oluşturmak için 'nesne' anahtar kelimesi kullanılır.",
+                "Nesneler, her zaman köşeli parantez içinde tanımlanır.",
+                "Nesneler, sadece string anahtarlarla tanımlanabilir.",
+
+                // Soru 10 - JavaScript'te fonksiyonlar nasıl tanımlanır ve kullanılır?
+                "Fonksiyonlar, her zaman 'let' anahtar kelimesiyle tanımlanır.",
+                "Fonksiyonlar, sadece bir kez çağrılabilir ve tekrar kullanılamazlar.",
+                "Fonksiyonlar, sadece 'function' anahtar kelimesi ile tanımlanabilir.",
+
+                // Soru 11 - JavaScript'te 'try', 'catch' ve 'finally' blokları ne işe yarar?
+                "'try' bloğu, her zaman hata fırlatır.",
+                "'catch' bloğu, her zaman hata mesajını gösterir.",
+                "'finally' bloğu, her zaman çalışır ve herhangi bir hata durumunda çalışmaz.",
+
+                // Soru 12 - JavaScript'te 'let', 'const' ve 'var' arasındaki fark nedir?
+                "'let' anahtar kelimesi, değişkenlerin değerlerini değiştiremez.",
+                "'const' anahtar kelimesi, değişkenlerin değerlerini daha sonra atama yapmadan değiştirilebilir.",
+                "'var' anahtar kelimesi, blok kapsamı dışında erişilebilir.",
+
+                // Soru 13 - JavaScript'te 'map' ve 'filter' fonksiyonları ne işe yarar?
+                "'map' fonksiyonu, dizi elemanlarını birleştirir.",
+                "'filter' fonksiyonu, belirli bir koşula uyan dizi elemanlarını çıkarır.",
+                "'map' fonksiyonu, dizi elemanlarını filtreler.",
+
+                // Soru 14 - JavaScript'te 'fetch' API'si ne işe yarar?
+                "'fetch' API'si, sadece sunucu tarafında kullanılır.",
+                "'fetch' API'si, asenkron işlemleri yönetmek için kullanılır.",
+                "'fetch' API'si, yalnızca POST istekleri yapmak için kullanılır.",
+
+                // Soru 15 - JavaScript'te 'async' ve 'await' anahtar kelimeleri ne işe yarar?
+                "'async' anahtar kelimesi, kodun senkronize çalışmasını sağlar.",
+                "'await' anahtar kelimesi, sadece 'async' fonksiyonları içinde kullanılabilir.",
+                "'await' anahtar kelimesi, kodun devam etmeden önce bir işlemin tamamlanmasını bekler.",
+
+                // Soru 16 - JavaScript'te modüller (modules) nedir ve nasıl kullanılır?
+                "Modüller, JavaScript'te kullanılamaz.",
+                "Modüller, sadece bir kez tanımlanabilir ve daha sonra değiştirilemez.",
+                "Modüller, yalnızca 'require' anahtar kelimesi ile çağrılabilir.",
+
+                // Soru 17 - JavaScript'te 'arrow functions' (ok fonksiyonları) nasıl tanımlanır?
+                "Ok fonksiyonları, yalnızca 'function' anahtar kelimesiyle tanımlanır.",
+                "Ok fonksiyonları, her zaman parantez içine alınan tek bir parametre alır.",
+                "Ok fonksiyonları, 'function' anahtar kelimesi yerine '=>' operatörü kullanılarak tanımlanır.",
+
+                // Soru 18 - JavaScript'te 'Promise' nedir ve nasıl kullanılır?
+                "'Promise', yalnızca senkron işlemleri yönetmek için kullanılır.",
+                "'Promise', yalnızca bir kez döndürülebilir ve daha sonra değiştirilemez.",
+                "'Promise', asenkron işlemleri yönetmek için kullanılan bir yapıdır.",
+
+                // Soru 19 - JavaScript'te 'localStorage' ve 'sessionStorage' ne işe yarar?
+                "'localStorage' ve 'sessionStorage', yalnızca sunucu tarafında kullanılabilir.",
+                "'localStorage' ve 'sessionStorage', yalnızca bir kez değer atandıktan sonra değiştirilebilir.",
+                "'localStorage' ve 'sessionStorage', tarayıcıda veri depolamak için kullanılır.",
+
+                // Soru 20 - JavaScript'te 'DOM Manipülasyonu' nedir ve nasıl yapılır?
+                "DOM Manipülasyonu, yalnızca tarayıcılar tarafından gerçekleştirilebilir.",
+                "DOM Manipülasyonu, JavaScript'te bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
+                "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
+            ];
             sor(sorular, cevaplar);
         }
 
