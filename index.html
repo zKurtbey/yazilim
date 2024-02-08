@@ -4,16 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazılım Bilgini Kanıtla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <style>
+        body{
+            margin: 0;
+            user-select: none;
+        }
         ::-webkit-scrollbar{
             display: none;
         }
-        p, h1{
+        .score{
+            position: fixed;
+            margin-top: 0rem;
+            margin-left: 2rem;
+            font-size: 70px;
+        }
+        @keyframes score-shake{
+            0%{font-size: 70px; transform: rotate(0deg);}
+            50%{font-size: 92px; transform: rotate(20deg);}
+            100%{font-size: 92px; transform: rotate(-20deg);}
+        }
+        h1{
+            margin: 3.5% 10% .75em 10%;
             color: aliceblue;
+            font-size: 40px;
+            font-family: "Protest Guerrilla", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+        }
+        .soru{
+            margin: 5% 10% .75em 10%;
+            color: aliceblue;
+            font-size: 40px;
+            font-family: "Protest Guerrilla", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+        }
+        p{
+            color: aliceblue;
+            margin: 0 10% 2em 10%;
+            text-align: center;
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+        #baslik{
+            margin: 2% 0 3% 0;
+            color: aliceblue;
+            font-size: 70px;
+            font-family: "Protest Guerrilla", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+            text-shadow: 5px 0px red,
+                10px 0px blue;
+        }
+        #soru{
+            font-family: "Protest Strike", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            color: aliceblue;
+            font-size: 22.5px;
+            letter-spacing: .75px;
+        }
+        input{
+            color: aliceblue;
+            background: transparent;
+            border: none;
+            text-align: center;
+            font-family: "Protest Strike", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 17.5px;
+            letter-spacing: .75px;
+            width: 25%;
+            margin-bottom: 1.5%;
+        }
+        input:focus{
+            outline: none;
+        }
+        #sonuc{
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            font-family: "Protest Strike", sans-serif;
         }
         .choose{
             cursor: pointer;
             transition: all .20s ease;
+            cursor: pointer;
         }
         .choose:hover{
             color: gray;
@@ -22,11 +108,10 @@
 </head>
 <body style="background-color: rgb(3, 0, 7); margin: 0;">
     <main>
+        <h1 class="score"></h1>
         <div style="text-align: center;" id="ekran">
-            <h1 style="color: aliceblue">Yazılım Bilgini Kanıtla</h1>
-            <label style="color: aliceblue" for="input">Hangi programlama dilindeki bilgini kanıtlamak istersin?</label>
-            <br>
-            <br>
+            <h1 id="baslik">Yazılım Bilgini Kanıtla</h1>
+            <p id="soru">Hangi programlama dilindeki bilgini kanıtlamak istersin?</p>
             <input list="ototamam" type="text" id="dil" onkeydown="check(event)" autofocus="on" autocomplete="off" placeholder="Geçerli bir dil giriniz..." autocapitalize="words" />
             <datalist id="ototamam">
                 <option value="HTML" class="oneri">HTML</option>
@@ -161,7 +246,7 @@
 
                         //soruları javascripte göre ayarlayacak ve javascripte özel olan script fonksiyonuna yolluyorum.
 
-                        script();
+                        script(inputvalue);
                     } else {
 
                         //eğer javascript değilse input değerini yeniden atıyorum.
@@ -329,7 +414,7 @@
 
                     // Soru 19
                     "'textarea' etiketi, yalnızca metin içeriği düzenlemek için kullanılır.",
-                    "'textarea' etiketi, kullanıcıdan çok satırlı metin girişi almak için kullanılır.",
+                    "'textarea' etiketi, kullanıcının dosya yüklemesi için kullanılır.",
                     "'textarea' etiketi, yalnızca görsel içeriği düzenlemek için kullanılır.",
 
                     // Soru 20
@@ -630,14 +715,14 @@
                     "'Module', yalnızca bir kez tanımlanabilir ve daha sonra değiştirilemez."
                 ];
             }
-            sikyap(sorular, cevaplar, hatalicevaplar);
+            sikyap(sorular, cevaplar, hatalicevaplar, inputvalue);
         }
 
 
 
         //javascript için ayrı şekilde soru ekliyorum.
 
-        function script(){
+        function script(inputvalue){
             var sorular = [
                 "JavaScript nedir ve hangi alanlarda kullanılır?",
                 "JavaScript'in temel özellikleri nelerdir?",
@@ -784,21 +869,20 @@
                 "DOM Manipülasyonu, JavaScript'te bir HTML elementinin özelliklerini değiştirmek için kullanılır.",
                 "DOM Manipülasyonu, yalnızca statik HTML sayfalarında kullanılabilir."
             ];
-            sikyap(sorular, cevaplar, hatalicevaplar);
+            sikyap(sorular, cevaplar, hatalicevaplar, inputvalue);
         }
-
-
+        let skor = 0;
         var secilensorular = [];
-        function sikyap(sorular, cevaplar, hatalicevaplar){
+        function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
+            document.querySelector(".score").innerHTML=skor;
+            document.querySelector(".score").style="animation: none";
             if(secilensorular.length == 20){
-                for (let i = 0; i < 4; i++){
-                    var br = document.createElement("br");
-                    document.querySelector("#sorualani").appendChild(br);
-                }
                 alert("Tebrikler! Bütün soruları bildiniz. Sorularımız bu kadar. Eğer başka dillerde de çözmek isterseniz sayfayı yenileyip tekrardan çözmek istediğiniz dilin adını girebilirsiniz.");
             } else {
                 var soru = document.createElement("h1");
+                soru.classList.add("soru");
                 document.querySelector("#sorualani").appendChild(soru);
+                console.log(sorular);
                 var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
                 if(secilensorular.includes(sorular.indexOf(rastgelesoru))){
                     console.log("yazdı");
@@ -818,6 +902,7 @@
                     document.querySelector("#sorualani").appendChild(choose);
                     chooses.push(choose);
                 }
+                chooses[3].style="margin-bottom: 5%";
                 document.querySelector("#sorualani").style="padding-bottom: 10em";
                 var sorununidsi = sorular.indexOf(rastgelesoru);
                 console.log(sorununidsi);
@@ -826,6 +911,21 @@
                 var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
                 chooses.splice(secilensikkinidsi, 1);
                 dogrucevapsikki.innerHTML = dogrucevap;
+                dogrucevapsikki.addEventListener("click", ()=>{
+                    skor++;
+                    var gecmissec = [];
+                    document.querySelectorAll(".choose").forEach((choose)=>{
+                        choose.classList.replace("choose", "gecmischoose");
+                        gecmissec.push(choose);
+                        console.log(gecmissec);
+                    });
+                    var gecmissecsayi = gecmissec.length;
+                    console.log(gecmissecsayi);
+                    gecmissec[gecmissecsayi-1].style="margin-bottom: 20%";
+                    document.querySelector(".soru").classList.replace("soru", "gecmissoru");
+                    console.log(document.querySelectorAll(".gecmissoru"));
+                    sikyap(sorular, cevaplar, hatalicevaplar);
+                });
                 sorununidsi = sorununidsi*3;
                 console.log(sorununidsi);
                 chooses.forEach((chooses) =>{
@@ -833,18 +933,81 @@
                     sorununidsi = sorununidsi + 1;
                     console.log(sorununidsi);
                     chooses.addEventListener("click", ()=>{
-                        alert("yanlış");
+                        chooses.style.color="red";
+                        var gercekcevap = document.createElement("p");
+                        gercekcevap.innerHTML= "Doğru cevap: " + dogrucevap;
+                        gercekcevap.setAttribute("id", "gercekcevap");
+                        document.querySelector("#sorualani").appendChild(gercekcevap);
+                        document.querySelector("#soru").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+                        var targetElement = document.getElementById("soru");
+                        var targetPosition = targetElement.getBoundingClientRect().top;
+                        var startPosition = window.pageYOffset;
+                        var distance = Math.abs(targetPosition - startPosition); // Absolute distance
+
+    // Set the desired speed or duration (e.g., pixels per millisecond or total milliseconds)
+                        var speed = 3; // pixels per millisecond
+                        var duration = distance / speed; // Duration in milliseconds
+
+// Usage example:
+                        var targetDuration = duration;
+                        document.querySelector(".score").style="animation: score-shake .5s ease-in-out alternate; animation-iteration-count: 4";
+                        console.log("Duration:", targetDuration, "milliseconds");
+                        setTimeout(()=>{
+                            var all = document.querySelectorAll(".gecmischoose");
+                            console.log(all);
+                            all.forEach((all) => {
+                                all.remove();
+                            });
+                            var allnew = document.querySelectorAll(".choose");
+                            console.log(allnew);
+                            allnew.forEach((allnew) => {
+                                allnew.remove();
+                            });
+                            if(document.querySelector(".gecmissoru")){
+                                document.querySelectorAll(".gecmissoru").forEach((gecmissoru) => {
+                                    gecmissoru.remove();
+                                });
+                            } 
+                            var yukseklik = document.querySelector("#ekran").style.height;
+                            var yenidenbasla = document.createElement("button");
+                            yenidenbasla.textContent = "Yeniden Başla";
+                            yenidenbasla.setAttribute("value", "Yeniden Başla");
+                            yenidenbasla.setAttribute("id", "yenidenbasla");
+                            yenidenbasla.style="background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: 20px; font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
+                            yenidenbasla.addEventListener("click", ()=>{ 
+                                if(document.querySelector(".choose")){
+                                    var all = document.querySelectorAll(".choose");
+                                    console.log(all);
+                                    all.forEach((all) => {
+                                        all.remove();
+                                    });
+                                }
+                                if(document.querySelector(".soru")){
+                                    document.querySelector(".soru").remove();
+                                }
+                                if(document.querySelector("#yenidenbasla")){
+                                    document.querySelector("#yenidenbasla").remove();
+                                }
+                                if(document.querySelector("#gercekcevap")){
+                                    document.querySelector("#gercekcevap").remove();
+                                }
+                                skor = 0;
+                                secilensorular = [];
+                                console.log(secilensorular);
+                                var inputvalue = document.querySelector("#dil").value.toLowerCase();
+                                console.log(inputvalue)
+                                if(inputvalue == "javascript"){
+                                    inputvalue = "script";
+                                    script(inputvalue);
+                                } else{
+                                    baslat(inputvalue);
+                                }
+                        });
+                        document.querySelector("#sorualani").appendChild(yenidenbasla);
+                    }, duration);
                     });
                 });
-
-                for (let i = 0; i < 5; i++){
-                    var br = document.createElement("br");
-                    document.querySelector("#sorualani").appendChild(br);
-                }
                 document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-                dogrucevapsikki.addEventListener("click", ()=>{
-                    sikyap(sorular, cevaplar, hatalicevaplar);
-                    });
                 }
             }
 
