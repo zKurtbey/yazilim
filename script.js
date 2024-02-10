@@ -6,7 +6,7 @@ enbas();
 //input bölgesini her harf girişinde etkileşimli olacak şekilde ayarlıyorum.
 function enbas(){
     document.querySelector("#soru").style.display="block";
-    document.querySelector("#dil").style.display="block";
+    document.querySelector("#dil").style.display="inline-block";
     document.querySelector("#sonuc").style.display="block";
     secilendil.focus();
     secilendil.removeAttribute("readonly", true);
