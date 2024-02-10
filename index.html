@@ -54,7 +54,7 @@
             100%{font-size: 92px; transform: rotate(-20deg);}
         }
         h1{
-            margin: 3.5% 10% .75em 10%;
+            margin: 3.5% 10% 0 10%;
             color: aliceblue;
             font-size: 40px;
             font-family: "Protest Guerrilla", sans-serif;
@@ -114,8 +114,9 @@
         }
         #sonuc{
             font-size: 15px;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-family: "Protest Strike", sans-serif;
+            font-weight: 100;
         }
         .choose{
             cursor: pointer;
@@ -125,6 +126,15 @@
         .choose:hover{
             color: gray;
         }
+        .haber{
+            margin-top: -2%;
+            position: static;
+            font-weight: 100;
+            letter-spacing: 1px;
+            font-family: "Protest Strike", sans-serif;
+            font-size: 20px;
+            color: rgb(241, 142, 112);
+        }
     </style>
 </head>
 <body style="background-color: rgb(3, 0, 7); margin: 0;">
@@ -132,6 +142,7 @@
         <h1 class="score"></h1>
         <div style="text-align: center;" id="ekran">
             <h1 id="baslik">Yazılım Bilgini Kanıtla</h1>
+            <h3 class="haber">YENİ: C++ ve C# dilleri eklendi!</h3>
             <p id="soru">Hangi programlama dilindeki bilgini kanıtlamak istersin?</p>
             <input list="ototamam" type="text" id="dil" onkeydown="check(event)" autofocus="on" autocomplete="off" placeholder="Geçerli bir dil giriniz..." autocapitalize="words" />
             <datalist id="ototamam">
@@ -139,6 +150,8 @@
                 <option value="Python" class="oneri">Python</option>
                 <option value="JavaScript" class="oneri">JavaScript</option>
                 <option value="Java" class="oneri">Java</option>
+                <option value="C++" class="oneri">C++</option>
+                <option value="C#" class="oneri">C#</option>
             </datalist>
             <br>
             <br>

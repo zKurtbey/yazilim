@@ -1,4 +1,3 @@
-
 //input bölgesine ad veriyorum
 var secilendil = document.querySelector("#dil");
 enbas();
@@ -15,7 +14,7 @@ function enbas(){
         document.querySelector("#sonuc").style="color: aliceblue; font-weight: normal";
 
         //olan dilleri atıyorum.
-        var olandiller = ["Python", "HTML", "JavaScript", "Java"];
+        var olandiller = ["Python", "HTML", "JavaScript", "Java", "C++", "C#"];
 
         //input değerini arrayde kontrol ederken büyük küçük sıkıntısı yaşamamak için bütün harflerini küçük harfe çeviriyorum
         var inputvalue = secilendil.value.toLowerCase();
@@ -58,7 +57,7 @@ function check(event){
     
     //buralarda değişkenleri yeniden atıyorum.
     
-    var olandiller = ["Python", "HTML", "JavaScript", "Java"];
+    var olandiller = ["Python", "HTML", "JavaScript", "Java", "C++", "C#"];
     var inputvalue = secilendil.value.toLowerCase();
     var olandillersec = olandiller.map(function (diller) {
         return diller.toLowerCase();
@@ -492,6 +491,208 @@ function baslat(inputvalue){
             "'Package', yalnızca bir Python modülünü içeren bir klasördür.",
             "'Module', yalnızca bir kez tanımlanabilir ve daha sonra değiştirilemez."
         ];
+    } else if(inputvalue == "c++"){
+        var sorular = [
+            "C++ nedir ve ne zaman ortaya çıkmıştır?",
+            "C++'ın temel özellikleri nelerdir?",
+            "C++ ile diğer programlama dilleri arasındaki temel farklar nelerdir?",
+            "C++'da nesne yönelimli programlama nedir ve neden önemlidir?",
+            "C++'da bir sınıf ve bir nesne arasındaki fark nedir?",
+            "C++'da kullanılan temel veri tipleri nelerdir?",
+            "C++'da döngüler nasıl kullanılır ve hangi türleri vardır?",
+            "C++'da fonksiyonlar nasıl tanımlanır ve çağrılır?",
+            "C++'da bir dizi nedir ve nasıl kullanılır?",
+            "C++'da bellek yönetimi nasıl çalışır?",
+            "C++'da hata ayıklama ve hata yakalama nasıl yapılır?",
+            "C++'da dosya işlemleri nasıl yapılır?",
+            "C++'da operatör aşırı yükleme (operator overloading) nedir ve nasıl kullanılır?",
+            "C++'da kalıtım (inheritance) nedir ve nasıl kullanılır?",
+            "C++'da çok biçimlilik (polymorphism) nasıl uygulanır?",
+            "C++'da dinamik bellek yönetimi (dynamic memory management) nedir ve nasıl yapılır?",
+            "C++'da referanslar (references) nasıl kullanılır ve neden önemlidir?",
+            "C++'da isim alanları (namespaces) nedir ve nasıl kullanılır?"
+        ];
+        var cevaplar = [
+            "C++ bir programlama dili ve 1980'lerde geliştirildi.",
+            "Nesne yönelimli programlama, genel programlama, bellek yönetimi, çok biçimlilik gibi özelliklere sahiptir.",
+            "C++ daha düşük seviyeli bir dilken, Python gibi diller daha yüksek seviyeli ve daha kolay anlaşılır.",
+            "Nesne yönelimli programlama, veri ve işlevselliği bir araya getirerek kodun yeniden kullanılabilirliğini artırır.",
+            "Bir sınıf, nesnelerin yapılarını ve davranışlarını tanımlayan bir taslaktır. Bir nesne ise bu sınıftan türetilen bir örnektir.",
+            "int, float, double, char gibi temel veri tipleri kullanılır.",
+            "for, while, do-while gibi döngüler kullanılır.",
+            "Fonksiyonlar tanımlanırken dönüş tipi, adı ve parametreleri belirtilir. Çağrıldıklarında parametreler ile çağrılırlar.",
+            "Dizi, aynı türden birden fazla veriyi saklamak için kullanılır. İndeksleme yaparak elemanlara erişilir.",
+            "Bellek yönetimi, dinamik bellek tahsisi ve serbest bırakma gibi işlemleri içerir.",
+            "Hata ayıklama için 'debugger' kullanılırken, hata yakalama için try-catch blokları kullanılır.",
+            "Dosya işlemleri için fstream kütüphanesi kullanılır. Dosya açma, yazma, okuma ve kapatma işlemleri gerçekleştirilir.",
+            "Operatör aşırı yükleme, bir operatörün farklı bağlamlarda farklı işlemler yapabilmesini sağlar.",
+            "Kalıtım, bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını miras almasıdır. Bu, kodun yeniden kullanılabilirliğini artırır.",
+            "Çok biçimlilik, aynı isimle birden fazla şekilde davranış sergileyen nesnelerin kullanılmasını sağlar. Bu, dinamik bağlama ile gerçekleştirilir.",
+            "Dinamik bellek yönetimi, program çalışırken bellek tahsis edilmesini ve serbest bırakılmasını içerir. 'new' ve 'delete' anahtar kelimeleri kullanılır. ",
+            "Referanslar, bir değişkenin başka bir isimle erişilmesini sağlar. Bellek verimliliğini artırır ve işlevler arasında veri aktarımını hızlandırır.",
+            "İsim alanları, aynı isme sahip farklı öğelerin çakışmasını önlemek için kullanılır. '::' operatörü ile kullanılır."
+        ];
+        var hatalicevaplar = [
+            "C++ bir programlama dili ve 1990'ların sonlarında geliştirildi.",
+            "C++ yalnızca prosedürel programlama özelliklerine sahiptir.",
+            "Nesne yönelimli programlama, C++'ın en önemli özelliğidir.",
+            "C++'ın temel özellikleri arasında dinamik bellek yönetimi yoktur.",
+            "C++ sadece veri saklama ve işlem özelliklerine sahiptir.",
+            "C++'ın temel özellikleri, sadece görsel programlamayı içerir.",
+            "C++'ın diğer dillerden farkı, kodun sadece Windows işletim sistemlerinde çalışmasıdır.",
+            "C++'ın diğer dillerden farkı, çok daha az kütüphane seçeneğine sahip olmasıdır.",
+            "C++'ın diğer dillerden farkı, daha yavaş çalışmasıdır.",
+            "Nesne yönelimli programlama, kodun daha az yeniden kullanılabilir olmasını sağlar.",
+            "Nesne yönelimli programlama, yalnızca kodun daha karmaşık hale gelmesini sağlar.",
+            "Nesne yönelimli programlama, kodun daha az modüler olmasını sağlar.",
+            "Bir sınıf, yalnızca fonksiyonlar içeren bir yapıdır.",
+            "Bir nesne, yalnızca veri saklayan bir yapıdır.",
+            "Bir sınıf, bir programın çalıştırılabilir bir parçasıdır.",
+            "C++'da kullanılan temel veri tipleri arasında boolean yoktur.",
+            "C++'da kullanılan temel veri tipleri arasında string yoktur.",
+            "C++'da kullanılan temel veri tipleri arasında pointer yoktur.",
+            "C++'da sadece for döngüsü kullanılır.",
+            "C++'da yalnızca while döngüsü kullanılır.", "C++'da yalnızca do-while döngüsü kullanılır.",
+            "Fonksiyonlar sadece çağrıldıklarında tanımlanır.", "Fonksiyonlar çağrıldıklarında parametre alamazlar.",
+            "Fonksiyonlar, yalnızca bir kez çağrılabilirler.",
+            "Diziler, yalnızca aynı türden verileri saklamak için kullanılır.",
+            "Diziler, sabit boyuta sahip olmak zorundadır.",
+            "Diziler, sadece tek boyutlu olabilirler.",
+            "C++'da bellek yönetimi, yalnızca otomatik ve statik bellek tahsisini içerir.",
+            "C++'da bellek yönetimi, yalnızca derleme zamanında yapılır.",
+            "C++'da bellek yönetimi, yalnızca otomatik garbage collection içerir.",
+            "Hata ayıklama, yalnızca kodun derlenme aşamasında yapılır.",
+            "Hata yakalama, yalnızca derleme zamanında gerçekleşir.",
+            "Hata ayıklama, yalnızca manuel olarak yapılır ve otomatik araçlar kullanılmaz.",
+            "C++'da dosya işlemleri için sadece fstream kütüphanesi kullanılır.",
+            "Dosya işlemleri, yalnızca programın başında yapılabilir.",
+            "Dosya işlemleri, yalnızca yazma işlemleri için kullanılır.",
+            "Operatör aşırı yükleme, sadece matematiksel operatörler için kullanılabilir.",
+            "Operatör aşırı yükleme, yalnızca C++'da değil diğer dillerde de mümkündür.",
+            "Operatör aşırı yükleme, programın performansını olumsuz etkiler.",
+            "Kalıtım, bir sınıfın başka bir sınıftan davranışlarını miras almasıdır.",
+            "Kalıtım, C++'ın temel özelliği değildir.",
+            "Kalıtım, yalnızca çoklu kalıtım durumlarında kullanılır.",
+            "Çok biçimlilik, aynı sınıftan türetilen nesnelerin aynı davranışı sergilemesidir.",
+            "Çok biçimlilik, yalnızca C++'da mümkündür.",
+            "Çok biçimlilik, yalnızca derleme zamanında belirlenir.",
+            "Dinamik bellek yönetimi, yalnızca C++'ın eski sürümlerinde kullanılırdı.",
+            "Dinamik bellek yönetimi, yalnızca verimliliği azaltır ve hata olasılığını artırır.",
+            "Dinamik bellek yönetimi, programın çalışma zamanında bellek ihtiyacını karşılamak için kullanılır.",
+            "Referanslar, yalnızca okunabilir değerler için kullanılır.",
+            "Referanslar, bellek verimliliğini artırmaz.",
+            "Referanslar, başka bir değişkenin takma adıdır.",
+            "İsim alanları, yalnızca C++ dilinde kullanılabilir.",
+            "İsim alanları, yalnızca global değişkenler için kullanılır.",
+            "İsim alanları, kodun daha okunabilir olmasını sağlamaz."
+        ];
+    } else if(inputvalue == "c#"){
+        var sorular = [
+            "C# nedir ve ne zaman ortaya çıkmıştır?",
+            "C# ile diğer programlama dilleri arasındaki temel farklar nelerdir?",
+            "C# ile nesne yönelimli programlama nasıl gerçekleştirilir?",
+            "C# ile GUI (Graphical User Interface - Grafiksel Kullanıcı Arayüzü) geliştirmek için hangi araçlar kullanılır?",
+            "C# dilindeki temel veri tipleri nelerdir ve nasıl kullanılırlar?",
+            "C# dilinde döngülerin farklı türleri nelerdir?",
+            "C# dilinde fonksiyonlar nasıl tanımlanır ve kullanılır?",
+            "C# dilinde diziler nasıl oluşturulur ve işlenir?",
+            "C# dilindeki koşullu ifadeler ve kontrol yapıları nelerdir?",
+            "C# dilindeki Exception Handling (Hata Yönetimi) nasıl yapılır?",
+            "C# dilinde hangi türde bellek yönetimi teknikleri kullanılır?",
+            "C# dilinde çoklu iş parçacığı programlaması (multithreading) nasıl yapılır?",
+            "C# dilindeki lambda ifadeleri ve LINQ (Language Integrated Query) nedir ve nasıl kullanılır?",
+            "C# dilindeki Generic (Jenerik) yapılar ne işe yarar ve nasıl kullanılır?",
+            "C# dilindeki Delegate ve Event yapıları nedir ve nasıl kullanılır?",
+            "C# dilinde hangi türde veri yapıları ve koleksiyonlar bulunur?",
+            "C# dilindeki Object-Oriented Programming (Nesne Yönelimli Programlama) prensipleri nelerdir?",
+            "C# dilindeki miras (inheritance) ve arayüzler (interfaces) nasıl kullanılır?",
+            "C# dilindeki dosya işlemleri nasıl yapılır?",
+            "C# dilinde hangi türde debugging (hata ayıklama) araçları ve teknikler bulunur?"
+        ];
+        var cevaplar = [
+            "C#, Microsoft tarafından geliştirilen bir programlama dili olup, 2000 yılında piyasaya sürülmüştür.",
+            "C# ile diğer diller arasındaki fark, C#'ın platform bağımsız olmasıdır ve geniş bir kullanıcı tabanına sahip olmasıdır.",
+            "Nesne yönelimli programlama, C# dilinde class ve object yapıları kullanılarak gerçekleştirilir.",
+            "C# ile GUI geliştirmek için Visual Studio gibi entegre geliştirme ortamları (IDE'ler) kullanılır.",
+            "C# dilinde int, float, double, bool, string gibi temel veri tipleri bulunur ve bunlar değişkenlerde kullanılır.",
+            "C# dilinde for, while, do-while gibi döngü yapıları bulunur.",
+            "Fonksiyonlar C# dilinde method olarak tanımlanır ve çağrılır. Parametreler alabilir ve geri dönüş değeri verebilirler.",
+            "Diziler, C# dilinde [] operatörü ile tanımlanır ve elemanlarına erişmek için indisleri kullanılır.",
+            "C# dilinde if, else-if, else gibi yapılarla koşullu ifadeler oluşturulur ve kontrol edilir.",
+            "Hata yönetimi, C# dilinde try-catch blokları kullanılarak gerçekleştirilir.",
+            "Bellek yönetimi, C# dilinde otomatik olarak garbage collection (çöp toplama) mekanizmasıyla yapılır.",
+            "Çoklu iş parçacığı programlaması, C# dilinde Thread sınıfı ve async-await anahtar kelimeleriyle gerçekleştirilir.",
+            "Lambda ifadeleri, C# dilinde kısa ve anonim fonksiyonlar oluşturmak için kullanılırken, LINQ ise sorguları nesne koleksiyonları üzerinde gerçekleştirmek için kullanılır.",
+            "Generic yapılar, C# dilinde veri tiplerinden bağımsız olarak çalışan ve yeniden kullanılabilir yapılar oluşturmak için kullanılır.",
+            "Delegate ve Event yapıları, C# dilinde olay tabanlı programlamada kullanılarak metodları işaret eder ve çağırır.",
+            "C# dilinde List<T>, Dictionary<TKey, TValue>, Queue<T>, Stack<T> gibi veri yapıları ve koleksiyonlar bulunur.",
+            "C# dilinde nesne yönelimli programlama prensipleri olan encapsulation, inheritance ve polymorphism kullanılır.",
+            "Miras (inheritance) C# dilinde bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını miras almasını sağlar, arayüzler (interfaces) ise sınıflar arasında birleşik bir sözleşme sağlar.",
+            "Dosya işlemleri, C# dilinde System.IO namespacesi içindeki sınıflar ile gerçekleştirilir.",
+            "Debugging araçları, C# dilinde Visual Studio gibi entegre geliştirme ortamları içinde bulunur ve hata ayıklama işlemleri için çeşitli teknikler sunar."
+        ];
+        var hatalicevaplar = [
+            "C#, yalnızca web geliştirme için kullanılır.",
+            "C#, sadece Microsoft tarafından geliştirilir.",
+            "C#, 2000'lerin başlarında ortaya çıkmıştır.",
+            "C# ile diğer diller arasındaki fark, C#'ın platform bağımsız olmasıdır.",
+            "C# sadece gömülü sistemler için kullanılır.",
+            "C# daha az güvenli bir dildir.",
+            "Nesne yönelimli programlama, C#'ın temel özelliği değildir.",
+            "Nesne yönelimli programlama, C#'ın en karmaşık özelliğidir.",
+            "Nesne yönelimli programlama, C#'ın sadece belirli versiyonlarında bulunur.",
+            "C# ile GUI geliştirmek için yalnızca web teknolojileri kullanılır.",
+            "C# ile GUI geliştirmek için yalnızca belirli bir IDE (Integrated Development Environment - Entegre Geliştirme Ortamı) kullanılabilir.",
+            "C# ile GUI geliştirmek için yalnızca terminal tabanlı araçlar kullanılır.",
+            "C#'da string veri tipi bulunmaz.",
+            "C#'da int veri tipi sadece ondalık sayıları temsil eder.",
+            "C#'da bool veri tipi sadece 'true' değerini alabilir.",
+            "C#'da sadece for döngüsü kullanılabilir.",
+            "C#'da döngüler sadece sayılarla çalışabilir.",
+            "C#'da döngülerin farklı türleri yalnızca belirli durumlarda kullanılabilir.",
+            "Fonksiyonlar yalnızca bir kez çağrılabilir.",
+            "Fonksiyonlar, yalnızca belirli bir sınıf içinde tanımlanabilir.",
+            "Fonksiyonlar, yalnızca bir geri dönüş değeri alabilir.",
+            "Diziler, C#'da sabit boyutludur.",
+            "Diziler, yalnızca tek boyutlu olabilir.",
+            "Diziler, C#'da birden fazla veri türünü saklayabilir.",
+            "C#'da koşullu ifadeler yalnızca tek bir ifadeyi kontrol eder.",
+            "C#'da koşullu ifadeler, yalnızca belirli durumlarda kullanılabilir.",
+            "C#'da koşullu ifadelerin birden fazla durumu yoktur.",
+            "Hata yönetimi, C#'da sadece try-catch blokları ile gerçekleştirilir.",
+            "Hata yönetimi, C#'da yalnızca derleme sırasında gerçekleştirilir.",
+            "Hata yönetimi, C#'da hiçbir zaman gerekli değildir.",
+            "Bellek yönetimi, C#'da yalnızca derleme zamanında yapılır.",
+            "Bellek yönetimi, C#'da sadece manuel olarak gerçekleştirilir.",
+            "Bellek yönetimi, C#'da otomatik olarak gerçekleştirilir.",
+            "Çoklu iş parçacığı programlaması, C#'da yalnızca belirli işletim sistemlerinde çalışır.",
+            "Çoklu iş parçacığı programlaması, C#'da yalnızca belirli durumlarda gerekli değildir.",
+            "Çoklu iş parçacığı programlaması, C#'da yalnızca çok az kullanılır.",
+            "Lambda ifadeleri, C#'da yalnızca matematiksel hesaplamalar için kullanılır.",
+            "Lambda ifadeleri, C#'da yalnızca metin işleme için kullanılır.",
+            "LINQ, C#'da yalnızca belirli bir kütüphane içinde bulunur.",
+            "Generic yapılar, C#'da sadece derleme zamanında belirlenir.",
+            "Generic yapılar, C#'da sadece belirli veri tipleri ile kullanılabilir.",
+            "Generic yapılar, C#'da hiçbir zaman gerekli değildir.",
+            "Delegate ve Event yapıları, C#'da yalnızca belirli durumlarda kullanılabilir.",
+            "Delegate ve Event yapıları, C#'da yalnızca görsel programlamada kullanılır.",
+            "Delegate ve Event yapıları, C#'da hiçbir zaman gerekli değildir.",
+            "C#'da yalnızca tek bir veri yapısı bulunur.",
+            "C#'da yalnızca tek bir koleksiyon türü bulunur.",
+            "C#'da veri yapıları ve koleksiyonlar yalnızca belirli durumlar için kullanılır.",
+            "OOP prensipleri, C#'da hiçbir zaman gerekli değildir.",
+            "OOP prensipleri, C#'da yalnızca büyük projelerde kullanılır.",
+            "OOP prensipleri, C#'da yalnızca belirli durumlarda gerekli değildir.",
+            "Miras ve arayüzler, C#'da yalnızca aynı dosya içinde tanımlanabilir.",
+            "Miras ve arayüzler, C#'da yalnızca belirli durumlarda kullanılır.",
+            "Miras ve arayüzler, C#'da yalnızca aynı proje içinde kullanılabilir.",
+            "Dosya işlemleri, C#'da yalnızca belirli bir kütüphane içinde bulunur.",
+            "Dosya işlemleri, C#'da yalnızca belirli bir platformda çalışır.",
+            "Dosya işlemleri, C#'da hiçbir zaman gerekli değildir.",
+            "Debugging araçları, C#'da yalnızca belirli bir IDE içinde bulunur.",
+            "Debugging araçları, C#'da hiçbir zaman gerekli değildir.",
+            "Debugging araçları, C#'da yalnızca belirli durumlarda kullanılır."
+        ];
     }
     sikyap(sorular, cevaplar, hatalicevaplar, inputvalue);
 }
@@ -699,10 +900,10 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                 var targetPosition = targetElement.getBoundingClientRect().top;
                 var startPosition = window.pageYOffset;
                 var distance = Math.abs(targetPosition - startPosition); // Absolute distance
-                //et the desired speed or duration (e.g., pixels per millisecond or total milliseconds)
+//et the desired speed or duration (e.g., pixels per millisecond or total milliseconds)
                 var speed = 3; // pixels per millisecond
                 var duration = distance / speed; // Duration in milliseconds
-                //sag example:
+//sag example:
                 var targetDuration = duration;
                 document.querySelector(".score").style="animation: score-shake .5s ease-in-out alternate; animation-iteration-count: 4";
                 console.log("Duration:", targetDuration, "milliseconds");
@@ -793,75 +994,75 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         document.querySelector("#sonuc").value="";
                         enbas();
                     });
-                    document.body.setAttribute("onkeypress","tekrar(event)");
-                    document.querySelector("#sorualani").appendChild(yenidenbasla);
-                    document.querySelector("#sorualani").appendChild(dildegistir);
-                }, duration);
+                document.body.setAttribute("onkeypress","tekrar(event)");
+                document.querySelector("#sorualani").appendChild(yenidenbasla);
+                document.querySelector("#sorualani").appendChild(dildegistir);
+            }, duration);
             });
         });
         document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+        }
     }
-}
-function tekrar(event){
-    if(event.key.toLowerCase() === "r"){
-        if(document.querySelector(".choose")){
-            var all = document.querySelectorAll(".choose");
-            console.log(all);
-            all.forEach((all) => {
-                all.remove();
-            });
+    function tekrar(event){
+        if(event.key.toLowerCase() === "r"){
+            if(document.querySelector(".choose")){
+                var all = document.querySelectorAll(".choose");
+                console.log(all);
+                all.forEach((all) => {
+                    all.remove();
+                });
+            }
+            if(document.querySelector(".soru")){
+                document.querySelector(".soru").remove();
+            }
+            if(document.querySelector("#yenidenbasla")){
+                document.querySelector("#yenidenbasla").remove();
+            }
+            if(document.querySelector("#dildegistir")){
+                document.querySelector("#dildegistir").remove();
+            }
+            if(document.querySelector("#gercekcevap")){
+                document.querySelector("#gercekcevap").remove();
+            }
+            skor = 0;
+            secilensorular = [];
+            console.log(secilensorular);
+            var inputvalue = document.querySelector("#dil").value.toLowerCase();
+            console.log(inputvalue)
+            if(inputvalue == "javascript"){
+                inputvalue = "script";
+                script(inputvalue);
+            } else{
+                baslat(inputvalue);
+            }
+        } else if(event.key.toLowerCase() === "d"){
+            if(document.querySelector(".choose")){
+                var all = document.querySelectorAll(".choose");
+                console.log(all);
+                all.forEach((all) => {
+                    all.remove();
+                });
+            }
+            if(document.querySelector(".soru")){
+                document.querySelector(".soru").remove();
+            }
+            if(document.querySelector("#yenidenbasla")){
+                document.querySelector("#yenidenbasla").remove();
+            }
+            if(document.querySelector("#dildegistir")){
+                document.querySelector("#dildegistir").remove();
+            }
+            if(document.querySelector("#gercekcevap")){
+                document.querySelector("#gercekcevap").remove();
+            }
+            skor = 0;
+            secilensorular = [];
+            console.log(secilensorular);
+            var inputvalue = document.querySelector("#dil").value.toLowerCase();
+            console.log(inputvalue);
+            document.querySelector("#sonuc").value="";
+            setTimeout(()=>{
+                enbas();
+            }, 50);
         }
-        if(document.querySelector(".soru")){
-            document.querySelector(".soru").remove();
-        }
-        if(document.querySelector("#yenidenbasla")){
-            document.querySelector("#yenidenbasla").remove();
-        }
-        if(document.querySelector("#dildegistir")){
-            document.querySelector("#dildegistir").remove();
-        }
-        if(document.querySelector("#gercekcevap")){
-            document.querySelector("#gercekcevap").remove();
-        }
-        skor = 0;
-        secilensorular = [];
-        console.log(secilensorular);
-        var inputvalue = document.querySelector("#dil").value.toLowerCase();
-        console.log(inputvalue)
-        if(inputvalue == "javascript"){
-            inputvalue = "script";
-            script(inputvalue);
-        } else{
-            baslat(inputvalue);
-        }
-    } else if(event.key.toLowerCase() === "d"){
-        if(document.querySelector(".choose")){
-            var all = document.querySelectorAll(".choose");
-            console.log(all);
-            all.forEach((all) => {
-                all.remove();
-            });
-        }
-        if(document.querySelector(".soru")){
-            document.querySelector(".soru").remove();
-        }
-        if(document.querySelector("#yenidenbasla")){
-            document.querySelector("#yenidenbasla").remove();
-        }
-        if(document.querySelector("#dildegistir")){
-            document.querySelector("#dildegistir").remove();
-        }
-        if(document.querySelector("#gercekcevap")){
-            document.querySelector("#gercekcevap").remove();
-        }
-        skor = 0;
-        secilensorular = [];
-        console.log(secilensorular);
-        var inputvalue = document.querySelector("#dil").value.toLowerCase();
-        console.log(inputvalue);
-        document.querySelector("#sonuc").value="";
-        setTimeout(()=>{
-            enbas();
-        }, 50);
     }
-}
