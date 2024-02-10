@@ -5,9 +5,6 @@ enbas();
 
 //input bölgesini her harf girişinde etkileşimli olacak şekilde ayarlıyorum.
 function enbas(){
-    document.querySelector("#soru").style.display="block";
-    document.querySelector("#dil").style.display="inline-block";
-    document.querySelector("#sonuc").style.display="block";
     secilendil.focus();
     secilendil.removeAttribute("readonly", true);
     secilendil.value="";
@@ -1052,9 +1049,15 @@ function tekrar(event){
         var inputvalue = document.querySelector("#dil").value.toLowerCase();
         console.log(inputvalue)
         if(inputvalue == "javascript"){
+            document.querySelector("#soru").style.display="block";
+            document.querySelector("#dil").style.display="inline-block";
+            document.querySelector("#sonuc").style.display="block";
             inputvalue = "script";
             script(inputvalue);
         } else{
+            document.querySelector("#soru").style.display="block";
+            document.querySelector("#dil").style.display="inline-block";
+            document.querySelector("#sonuc").style.display="block";
             baslat(inputvalue);
         }
     } else if(event.key.toLowerCase() === "d"){
@@ -1087,6 +1090,9 @@ function tekrar(event){
         console.log(inputvalue);
         document.querySelector("#sonuc").value="";
         setTimeout(()=>{
+            document.querySelector("#soru").style.display="block";
+            document.querySelector("#dil").style.display="inline-block";
+            document.querySelector("#sonuc").style.display="block";
             enbas();
         }, 50);
     }
