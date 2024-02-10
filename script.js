@@ -1,15 +1,17 @@
+
 //input bölgesine ad veriyorum
 var secilendil = document.querySelector("#dil");
 enbas();
 
 //input bölgesini her harf girişinde etkileşimli olacak şekilde ayarlıyorum.
 function enbas(){
-    document.body.removeAttribute("onkeypress", "tekrar(event)");
+    document.querySelector("#soru").style.display="block";
+    document.querySelector("#dil").style.display="inline-block";
+    document.querySelector("#sonuc").style.display="block";
     secilendil.focus();
     secilendil.removeAttribute("readonly", true);
     secilendil.value="";
     secilendil.addEventListener("input", ()=>{
-
         //Eğer Entera basıldıysa, renk değişiminin yeniden iptal olması için rengi siyah yapıyorum.
         document.querySelector("#sonuc").style="color: aliceblue; font-weight: normal";
 
@@ -108,6 +110,9 @@ function check(event){
 
 //girilen değerlere göre soruları atıyorum.
 function baslat(inputvalue){
+    document.querySelector("#soru").style.display="none";
+    document.querySelector("#dil").style.display="none";
+    document.querySelector("#sonuc").style.display="none";
     document.body.removeAttribute("onkeypress", "tekrar(event)");
     var java = "java";
     if (inputvalue == "html") {
@@ -698,6 +703,9 @@ function baslat(inputvalue){
 }
 //javascript için ayrı şekilde soru ekliyorum.
 function script(inputvalue){
+    document.querySelector("#soru").style.display="none";
+    document.querySelector("#dil").style.display="none";
+    document.querySelector("#sonuc").style.display="none";
     document.body.removeAttribute("onkeypress", "tekrar(event)");
     var sorular = [
         "JavaScript nedir ve hangi alanlarda kullanılır?",
@@ -877,7 +885,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
             });
             var gecmissecsayi = gecmissec.length;
             console.log(gecmissecsayi);
-            gecmissec[gecmissecsayi-1].style="margin-bottom: 20%";
+            gecmissec[gecmissecsayi-1].style="margin-bottom: 10%";
             document.querySelector(".soru").classList.replace("soru", "gecmissoru");
             console.log(document.querySelectorAll(".gecmissoru"));
             sikyap(sorular, cevaplar, hatalicevaplar);
@@ -890,11 +898,8 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
             sorununidsi = sorununidsi + 1;
             console.log(sorununidsi);
             chooses.addEventListener("click", ()=>{
+                var secilen = chooses.textContent;
                 chooses.style.color="red";
-                var gercekcevap = document.createElement("p");
-                gercekcevap.innerHTML= "Doğru cevap: " + dogrucevap;
-                gercekcevap.setAttribute("id", "gercekcevap");
-                document.querySelector("#sorualani").appendChild(gercekcevap);
                 document.querySelector("#soru").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
                 var targetElement = document.getElementById("soru");
                 var targetPosition = targetElement.getBoundingClientRect().top;
@@ -908,6 +913,14 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                 document.querySelector(".score").style="animation: score-shake .5s ease-in-out alternate; animation-iteration-count: 4";
                 console.log("Duration:", targetDuration, "milliseconds");
                 setTimeout(()=>{
+                    var gercekcevap = document.createElement("p");
+                    gercekcevap.innerHTML= "Doğru cevap: " + dogrucevap;
+                    gercekcevap.setAttribute("id", "gercekcevap");
+                    document.querySelector("#sorualani").appendChild(gercekcevap);
+                    var secilencevap = document.createElement("p");
+                    secilencevap.innerHTML="Seçtiğiniz cevap: " + secilen;
+                    secilencevap.setAttribute("id", "secilencevap");
+                    document.querySelector("#sorualani").appendChild(secilencevap);
                     var all = document.querySelectorAll(".gecmischoose");
                     console.log(all);
                     all.forEach((all) => {
@@ -949,6 +962,9 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         if(document.querySelector("#gercekcevap")){
                             document.querySelector("#gercekcevap").remove();
                         }
+                        if(document.querySelector("#secilencevap")){
+                            document.querySelector("#secilencevap").remove();
+                        }
                         skor = 0;
                         secilensorular = [];
                         console.log(secilensorular);
@@ -986,6 +1002,9 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         if(document.querySelector("#gercekcevap")){
                             document.querySelector("#gercekcevap").remove();
                         }
+                        if(document.querySelector("#secilencevap")){
+                            document.querySelector("#secilencevap").remove();
+                        }
                         skor = 0;
                         secilensorular = [];
                         console.log(secilensorular);
@@ -998,71 +1017,77 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                 document.querySelector("#sorualani").appendChild(yenidenbasla);
                 document.querySelector("#sorualani").appendChild(dildegistir);
             }, duration);
-            });
         });
-        document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-        }
+    });
+    document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }
-    function tekrar(event){
-        if(event.key.toLowerCase() === "r"){
-            if(document.querySelector(".choose")){
-                var all = document.querySelectorAll(".choose");
-                console.log(all);
-                all.forEach((all) => {
-                    all.remove();
-                });
-            }
-            if(document.querySelector(".soru")){
-                document.querySelector(".soru").remove();
-            }
-            if(document.querySelector("#yenidenbasla")){
-                document.querySelector("#yenidenbasla").remove();
-            }
-            if(document.querySelector("#dildegistir")){
-                document.querySelector("#dildegistir").remove();
-            }
-            if(document.querySelector("#gercekcevap")){
-                document.querySelector("#gercekcevap").remove();
-            }
-            skor = 0;
-            secilensorular = [];
-            console.log(secilensorular);
-            var inputvalue = document.querySelector("#dil").value.toLowerCase();
-            console.log(inputvalue)
-            if(inputvalue == "javascript"){
-                inputvalue = "script";
-                script(inputvalue);
-            } else{
-                baslat(inputvalue);
-            }
-        } else if(event.key.toLowerCase() === "d"){
-            if(document.querySelector(".choose")){
-                var all = document.querySelectorAll(".choose");
-                console.log(all);
-                all.forEach((all) => {
-                    all.remove();
-                });
-            }
-            if(document.querySelector(".soru")){
-                document.querySelector(".soru").remove();
-            }
-            if(document.querySelector("#yenidenbasla")){
-                document.querySelector("#yenidenbasla").remove();
-            }
-            if(document.querySelector("#dildegistir")){
-                document.querySelector("#dildegistir").remove();
-            }
-            if(document.querySelector("#gercekcevap")){
-                document.querySelector("#gercekcevap").remove();
-            }
-            skor = 0;
-            secilensorular = [];
-            console.log(secilensorular);
-            var inputvalue = document.querySelector("#dil").value.toLowerCase();
-            console.log(inputvalue);
-            document.querySelector("#sonuc").value="";
-            setTimeout(()=>{
-                enbas();
-            }, 50);
+}
+function tekrar(event){
+    if(event.key.toLowerCase() === "r"){
+        if(document.querySelector(".choose")){
+            var all = document.querySelectorAll(".choose");
+            console.log(all);
+            all.forEach((all) => {
+                all.remove();
+            });
         }
+        if(document.querySelector(".soru")){
+            document.querySelector(".soru").remove();
+        }
+        if(document.querySelector("#yenidenbasla")){
+            document.querySelector("#yenidenbasla").remove();
+        }
+        if(document.querySelector("#dildegistir")){
+            document.querySelector("#dildegistir").remove();
+        }
+        if(document.querySelector("#gercekcevap")){
+            document.querySelector("#gercekcevap").remove();
+        }
+        if(document.querySelector("#secilencevap")){
+            document.querySelector("#secilencevap").remove();
+        }
+        skor = 0;
+        secilensorular = [];
+        console.log(secilensorular);
+        var inputvalue = document.querySelector("#dil").value.toLowerCase();
+        console.log(inputvalue)
+        if(inputvalue == "javascript"){
+            inputvalue = "script";
+            script(inputvalue);
+        } else{
+            baslat(inputvalue);
+        }
+    } else if(event.key.toLowerCase() === "d"){
+        if(document.querySelector(".choose")){
+            var all = document.querySelectorAll(".choose");
+            console.log(all);
+            all.forEach((all) => {
+                all.remove();
+            });
+        }
+        if(document.querySelector(".soru")){
+            document.querySelector(".soru").remove();
+        }
+        if(document.querySelector("#yenidenbasla")){
+            document.querySelector("#yenidenbasla").remove();
+        }
+        if(document.querySelector("#dildegistir")){
+            document.querySelector("#dildegistir").remove();
+        }
+        if(document.querySelector("#gercekcevap")){
+            document.querySelector("#gercekcevap").remove();
+        }
+        if(document.querySelector("#secilencevap")){
+            document.querySelector("#secilencevap").remove();
+        }
+        skor = 0;
+        secilensorular = [];
+        console.log(secilensorular);
+        var inputvalue = document.querySelector("#dil").value.toLowerCase();
+        console.log(inputvalue);
+        document.querySelector("#sonuc").value="";
+        setTimeout(()=>{
+            enbas();
+        }, 50);
     }
+}

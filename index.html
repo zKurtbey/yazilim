@@ -44,27 +44,33 @@
         }
         .score{
             position: fixed;
-            margin-top: 0rem;
-            margin-left: 2rem;
-            font-size: 70px;
+            margin-top: calc(0% - .5dvw);
+            margin-left: calc(1% + 1dvw);
+            font-size: calc(100% + 5dvw);
+            text-shadow: 0px 0px 10px black;
+            color: white;
+            font-family: "Protest Guerrilla", sans-serif;
+            font-weight: 200;
+            font-style: normal;
         }
         @keyframes score-shake{
             0%{font-size: 70px; transform: rotate(0deg);}
             50%{font-size: 92px; transform: rotate(20deg);}
             100%{font-size: 92px; transform: rotate(-20deg);}
         }
-        h1{
-            margin: 3.5% 10% 0 10%;
+        .soru{
+            margin: -1.5% 10% .75em 10%;
             color: aliceblue;
-            font-size: 40px;
+            font-size: calc(60% + 2.25dvw);
             font-family: "Protest Guerrilla", sans-serif;
             font-weight: 200;
             font-style: normal;
+            transition: all .25s ease;
         }
-        .soru{
-            margin: 5% 10% .75em 10%;
-            color: aliceblue;
-            font-size: 40px;
+        .gecmissoru{
+            margin: -2.5% 10% .75em 10%;
+            color: rgb(49, 230, 109);
+            font-size: calc(60% + 2.25dvw);
             font-family: "Protest Guerrilla", sans-serif;
             font-weight: 200;
             font-style: normal;
@@ -79,9 +85,9 @@
             font-style: normal;
         }
         #baslik{
-            margin: 2% 0 3% 0;
+            margin: calc(2.5% - 1dvw) 0 3% 0;
             color: aliceblue;
-            font-size: 70px;
+            font-size: calc(60% + 5dvw);
             font-family: "Protest Guerrilla", sans-serif;
             font-weight: 200;
             font-style: normal;
@@ -93,10 +99,12 @@
             font-weight: 400;
             font-style: normal;
             color: aliceblue;
-            font-size: 22.5px;
+            font-size: calc(55% + 1dvw);
             letter-spacing: .75px;
+            margin-bottom: 1.5%;
         }
         input{
+            margin-bottom: 1%;
             color: aliceblue;
             background: transparent;
             border: none;
@@ -104,10 +112,9 @@
             font-family: "Protest Strike", sans-serif;
             font-weight: 400;
             font-style: normal;
-            font-size: 17.5px;
+            font-size: calc(60% + .75dvw);
             letter-spacing: .75px;
-            width: 25%;
-            margin-bottom: 1.5%;
+            width: calc(20% + 6.5dvw);
         }
         input:focus{
             outline: none;
@@ -117,11 +124,20 @@
             letter-spacing: 2px;
             font-family: "Protest Strike", sans-serif;
             font-weight: 100;
+            color: aliceblue;
         }
         .choose{
             cursor: pointer;
             transition: all .20s ease;
+            font-size: calc(50% + .75dvw);
             cursor: pointer;
+        }
+        .gecmischoose{
+            cursor: pointer;
+            transition: all .20s ease;
+            font-size: calc(50% + .75dvw);
+            cursor: pointer;
+            color: rgb(49, 230, 109);
         }
         .choose:hover{
             color: gray;
@@ -132,14 +148,14 @@
             font-weight: 100;
             letter-spacing: 1px;
             font-family: "Protest Strike", sans-serif;
-            font-size: 20px;
+            font-size: calc(50% + 1dvw);
             color: rgb(241, 142, 112);
         }
     </style>
 </head>
-<body style="background-color: rgb(3, 0, 7); margin: 0;">
+<body onkeypress="tekrar(event)" style="background-color: rgb(3, 0, 7); margin: 0;">
     <main>
-        <h1 class="score"></h1>
+        <h1 class="score">0</h1>
         <div style="text-align: center;" id="ekran">
             <h1 id="baslik">Yazılım Bilgini Kanıtla</h1>
             <h3 class="haber">YENİ: C++ ve C# dilleri eklendi!</h3>
@@ -153,9 +169,8 @@
                 <option value="C++" class="oneri">C++</option>
                 <option value="C#" class="oneri">C#</option>
             </datalist>
-            <br>
-            <br>
-            <output id="sonuc" style="color: aliceblue"></output>
+            <br id="br">
+            <output id="sonuc"></output>
             <div id="sorualani"></div>
         </div>
     </main>
