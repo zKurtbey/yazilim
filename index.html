@@ -54,9 +54,9 @@
             font-style: normal;
         }
         @keyframes score-shake{
-            0%{font-size: 70px; transform: rotate(0deg);}
-            50%{font-size: 92px; transform: rotate(20deg);}
-            100%{font-size: 92px; transform: rotate(-20deg);}
+            0%{font-size: calc(100% + 5dvw); transform: rotate(0deg);}
+            50%{font-size: calc(100% + 6dvw); transform: rotate(20deg);}
+            100%{font-size: calc(100% + 6dvw); transform: rotate(-20deg);}
         }
         .soru{
             margin: -1.5% 10% .75em 10%;
@@ -120,7 +120,7 @@
             outline: none;
         }
         #sonuc{
-            font-size: 15px;
+            font-size: calc(50% + 1dvw);
             letter-spacing: 2px;
             font-family: "Protest Strike", sans-serif;
             font-weight: 100;
