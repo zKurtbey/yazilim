@@ -938,7 +938,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     yenidenbasla.textContent = "Yeniden Başla (R)";
                     yenidenbasla.setAttribute("value", "Yeniden Başla (R)");
                     yenidenbasla.setAttribute("id", "yenidenbasla");
-                    yenidenbasla.style="background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: calc(50% + .25dvw); font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
+                    yenidenbasla.style="background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: calc(50% + 1dvw); font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
                     yenidenbasla.addEventListener("click", ()=>{ 
                         if(document.querySelector(".choose")){
                             var all = document.querySelectorAll(".choose");
@@ -978,7 +978,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     dildegistir.textContent = "Dili Değiştir (D)";
                     dildegistir.setAttribute("value", "Dili Değiştir");
                     dildegistir.setAttribute("id", "dildegistir");
-                    dildegistir.style="margin-top: 1.5%; justify-content: space-between; margin-left: 7.5%; background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: calc(50% + .25dvw); font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
+                    dildegistir.style="margin-top: 1.5%; justify-content: space-between; margin-left: 7.5%; background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: calc(50% + 1dvw); font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
                     dildegistir.addEventListener("click", ()=>{
                         if(document.querySelector(".choose")){
                             var all = document.querySelectorAll(".choose");
