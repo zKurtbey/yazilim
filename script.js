@@ -1,49 +1,56 @@
 
 //input bölgesine ad veriyorum
 var secilendil = document.querySelector("#dil");
+enbas();
 
 //input bölgesini her harf girişinde etkileşimli olacak şekilde ayarlıyorum.
-secilendil.addEventListener("input", ()=>{
-    
-    //Eğer Entera basıldıysa, renk değişiminin yeniden iptal olması için rengi siyah yapıyorum.
-    document.querySelector("#sonuc").style="color: aliceblue; font-weight: normal";
-    
-    //olan dilleri atıyorum.
-    var olandiller = ["Python", "HTML", "JavaScript", "Java"];
-    
-    //input değerini arrayde kontrol ederken büyük küçük sıkıntısı yaşamamak için bütün harflerini küçük harfe çeviriyorum
-    var inputvalue = secilendil.value.toLowerCase();
-    //olandiller arrayinin verilerinin hepsini küçük harfe çeviriyorum.
-    var olandillersec = olandiller.map(function (diller) {
-        return diller.toLowerCase();
+function enbas(){
+    document.body.removeAttribute("onkeypress", "tekrar(event)");
+    secilendil.focus();
+    secilendil.removeAttribute("readonly", true);
+    secilendil.value="";
+    secilendil.addEventListener("input", ()=>{
+
+        //Eğer Entera basıldıysa, renk değişiminin yeniden iptal olması için rengi siyah yapıyorum.
+        document.querySelector("#sonuc").style="color: aliceblue; font-weight: normal";
+
+        //olan dilleri atıyorum.
+        var olandiller = ["Python", "HTML", "JavaScript", "Java"];
+
+        //input değerini arrayde kontrol ederken büyük küçük sıkıntısı yaşamamak için bütün harflerini küçük harfe çeviriyorum
+        var inputvalue = secilendil.value.toLowerCase();
+        //olandiller arrayinin verilerinin hepsini küçük harfe çeviriyorum.
+        var olandillersec = olandiller.map(function (diller) {
+            return diller.toLowerCase();
+        });
+        //inputa hiçbir şey yazılmamışken boş kalması için girilen karakter sayacı ekliyorum.
+        var lettercount = inputvalue.length;
+
+        //eğer girilen harf sayısı 0 ise outputu boş bırakıyorum.
+        if(lettercount == 0){
+            document.querySelector("#sonuc").textContent = "";
+        } else{
+            //eğer 0 değil ise, küçük harfe çevirdiğim olandiller arrayinde küçük harfe çevirdiğim girilen input değerini aratıyorum.
+
+            if(olandillersec.includes(inputvalue)){
+                //girilen input değerinin olandillersec arrayindeki konumunu buluyorum.
+                var girilendil = olandillersec.indexOf(inputvalue);
+
+                //bulduğum konumdaki veriyi kesip alıyorum.
+                var kesilmisdil = olandiller.splice(girilendil, 1)[0];
+                //input değerindeki dil ismini gerçek büyük harfli yazılışıyla değiştiriyorum.
+                secilendil.value = kesilmisdil;
+
+                //seçilen dili onaylatıyorum.
+                document.querySelector("#sonuc").textContent = kesilmisdil + " dilini seçtiniz. Onaylamak için 'Enter' tuşuna basın.";
+            } else {
+                //eğer girilen değer olandillersec arrayinde yoksa hata ekliyorum. 
+
+                document.querySelector("#sonuc").textContent = inputvalue + " adında bir dil mevcut değildir.";    
+            }
+        } 
     });
-    //inputa hiçbir şey yazılmamışken boş kalması için girilen karakter sayacı ekliyorum.
-    var lettercount = inputvalue.length;
-    
-    //eğer girilen harf sayısı 0 ise outputu boş bırakıyorum.
-    if(lettercount == 0){
-        document.querySelector("#sonuc").textContent = "";
-    } else{
-        //eğer 0 değil ise, küçük harfe çevirdiğim olandiller arrayinde küçük harfe çevirdiğim girilen input değerini aratıyorum.
-        
-        if(olandillersec.includes(inputvalue)){
-            //girilen input değerinin olandillersec arrayindeki konumunu buluyorum.
-            var girilendil = olandillersec.indexOf(inputvalue);
-            
-            //bulduğum konumdaki veriyi kesip alıyorum.
-            var kesilmisdil = olandiller.splice(girilendil, 1)[0];
-            //input değerindeki dil ismini gerçek büyük harfli yazılışıyla değiştiriyorum.
-            secilendil.value = kesilmisdil;
-            
-            //seçilen dili onaylatıyorum.
-            document.querySelector("#sonuc").textContent = kesilmisdil + " dilini seçtiniz. Onaylamak için 'Enter' tuşuna basın.";
-        } else {
-            //eğer girilen değer olandillersec arrayinde yoksa hata ekliyorum. 
-            
-            document.querySelector("#sonuc").textContent = inputvalue + " adında bir dil mevcut değildir.";    
-        }
-    } 
-});
+}
 
 
 //Enter tuşuna basılıp basılmadığını kontrol ediyorum.
@@ -102,6 +109,7 @@ function check(event){
 
 //girilen değerlere göre soruları atıyorum.
 function baslat(inputvalue){
+    document.body.removeAttribute("onkeypress", "tekrar(event)");
     var java = "java";
     if (inputvalue == "html") {
         var sorular = [
@@ -489,6 +497,7 @@ function baslat(inputvalue){
 }
 //javascript için ayrı şekilde soru ekliyorum.
 function script(inputvalue){
+    document.body.removeAttribute("onkeypress", "tekrar(event)");
     var sorular = [
         "JavaScript nedir ve hangi alanlarda kullanılır?",
         "JavaScript'in temel özellikleri nelerdir?",
@@ -672,6 +681,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
             console.log(document.querySelectorAll(".gecmissoru"));
             sikyap(sorular, cevaplar, hatalicevaplar);
         });
+        
         sorununidsi = sorununidsi*3;
         console.log(sorununidsi);
         chooses.forEach((chooses) =>{
@@ -689,10 +699,10 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                 var targetPosition = targetElement.getBoundingClientRect().top;
                 var startPosition = window.pageYOffset;
                 var distance = Math.abs(targetPosition - startPosition); // Absolute distance
-//et the desired speed or duration (e.g., pixels per millisecond or total milliseconds)
+                //et the desired speed or duration (e.g., pixels per millisecond or total milliseconds)
                 var speed = 3; // pixels per millisecond
                 var duration = distance / speed; // Duration in milliseconds
-//sag example:
+                //sag example:
                 var targetDuration = duration;
                 document.querySelector(".score").style="animation: score-shake .5s ease-in-out alternate; animation-iteration-count: 4";
                 console.log("Duration:", targetDuration, "milliseconds");
@@ -714,8 +724,8 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     } 
                     var yukseklik = document.querySelector("#ekran").style.height;
                     var yenidenbasla = document.createElement("button");
-                    yenidenbasla.textContent = "Yeniden Başla";
-                    yenidenbasla.setAttribute("value", "Yeniden Başla");
+                    yenidenbasla.textContent = "Yeniden Başla (R)";
+                    yenidenbasla.setAttribute("value", "Yeniden Başla (R)");
                     yenidenbasla.setAttribute("id", "yenidenbasla");
                     yenidenbasla.style="background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: 20px; font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
                     yenidenbasla.addEventListener("click", ()=>{ 
@@ -732,6 +742,9 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         if(document.querySelector("#yenidenbasla")){
                             document.querySelector("#yenidenbasla").remove();
                         }
+                        if(document.querySelector("#dildegistir")){
+                            document.querySelector("#dildegistir").remove();
+                        }
                         if(document.querySelector("#gercekcevap")){
                             document.querySelector("#gercekcevap").remove();
                         }
@@ -744,13 +757,111 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                             inputvalue = "script";
                             script(inputvalue);
                         } else{
-                            baslat(inputvalue);
+                           baslat(inputvalue);
                         }
-                });
-                document.querySelector("#sorualani").appendChild(yenidenbasla);
-            }, duration);
+                    });
+                    var dildegistir = document.createElement("button");    
+                    dildegistir.textContent = "Dili Değiştir (D)";
+                    dildegistir.setAttribute("value", "Dili Değiştir");
+                    dildegistir.setAttribute("id", "dildegistir");
+                    dildegistir.style="margin-top: 1.5%; justify-content: space-between; margin-left: 7.5%; background: transparent; color: aliceblue; border: 1px solid white; padding: 10px;  border-radius: 4px; cursor: pointer; font-size: 20px; font-family: 'Protest Guerrilla', sans-serif; font-weight:     200; font-style: normal;";
+                    dildegistir.addEventListener("click", ()=>{
+                        if(document.querySelector(".choose")){
+                            var all = document.querySelectorAll(".choose");
+                            console.log(all);
+                            all.forEach((all) => {
+                                all.remove();
+                            });
+                        }
+                        if(document.querySelector(".soru")){
+                            document.querySelector(".soru").remove();
+                        }
+                        if(document.querySelector("#yenidenbasla")){
+                            document.querySelector("#yenidenbasla").remove();
+                        }
+                        if(document.querySelector("#dildegistir")){
+                            document.querySelector("#dildegistir").remove();
+                        }
+                        if(document.querySelector("#gercekcevap")){
+                            document.querySelector("#gercekcevap").remove();
+                        }
+                        skor = 0;
+                        secilensorular = [];
+                        console.log(secilensorular);
+                        var inputvalue = document.querySelector("#dil").value.toLowerCase();
+                        console.log(inputvalue);
+                        document.querySelector("#sonuc").value="";
+                        enbas();
+                    });
+                    document.body.setAttribute("onkeypress","tekrar(event)");
+                    document.querySelector("#sorualani").appendChild(yenidenbasla);
+                    document.querySelector("#sorualani").appendChild(dildegistir);
+                }, duration);
             });
         });
         document.querySelector("#sorualani").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-        }
     }
+}
+function tekrar(event){
+    if(event.key.toLowerCase() === "r"){
+        if(document.querySelector(".choose")){
+            var all = document.querySelectorAll(".choose");
+            console.log(all);
+            all.forEach((all) => {
+                all.remove();
+            });
+        }
+        if(document.querySelector(".soru")){
+            document.querySelector(".soru").remove();
+        }
+        if(document.querySelector("#yenidenbasla")){
+            document.querySelector("#yenidenbasla").remove();
+        }
+        if(document.querySelector("#dildegistir")){
+            document.querySelector("#dildegistir").remove();
+        }
+        if(document.querySelector("#gercekcevap")){
+            document.querySelector("#gercekcevap").remove();
+        }
+        skor = 0;
+        secilensorular = [];
+        console.log(secilensorular);
+        var inputvalue = document.querySelector("#dil").value.toLowerCase();
+        console.log(inputvalue)
+        if(inputvalue == "javascript"){
+            inputvalue = "script";
+            script(inputvalue);
+        } else{
+            baslat(inputvalue);
+        }
+    } else if(event.key.toLowerCase() === "d"){
+        if(document.querySelector(".choose")){
+            var all = document.querySelectorAll(".choose");
+            console.log(all);
+            all.forEach((all) => {
+                all.remove();
+            });
+        }
+        if(document.querySelector(".soru")){
+            document.querySelector(".soru").remove();
+        }
+        if(document.querySelector("#yenidenbasla")){
+            document.querySelector("#yenidenbasla").remove();
+        }
+        if(document.querySelector("#dildegistir")){
+            document.querySelector("#dildegistir").remove();
+        }
+        if(document.querySelector("#gercekcevap")){
+            document.querySelector("#gercekcevap").remove();
+        }
+        skor = 0;
+        secilensorular = [];
+        console.log(secilensorular);
+        var inputvalue = document.querySelector("#dil").value.toLowerCase();
+        console.log(inputvalue);
+        document.querySelector("#sonuc").value="";
+        setTimeout(()=>{
+            enbas();
+        }, 50);
+    }
+}
