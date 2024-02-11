@@ -1008,6 +1008,9 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         var inputvalue = document.querySelector("#dil").value.toLowerCase();
                         console.log(inputvalue);
                         document.querySelector("#sonuc").value="";
+                        document.querySelector("#soru").style.display="block";
+                        document.querySelector("#dil").style.display="inline-block";
+                        document.querySelector("#sonuc").style.display="block";
                         enbas();
                     });
                 document.body.setAttribute("onkeypress","tekrar(event)");
