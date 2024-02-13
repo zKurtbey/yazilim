@@ -843,18 +843,13 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
         var soru = document.createElement("h1");
         soru.classList.add("soru");
         document.querySelector("#sorualani").appendChild(soru);
-        console.log(sorular);
         var rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
         if(secilensorular.includes(sorular.indexOf(rastgelesoru))){
-            console.log("yazdı");
         }
         while (secilensorular.includes(sorular.indexOf(rastgelesoru))){
-            console.log(rastgelesoru + " yazıldı. Yeni soru çekiyorum.");
             rastgelesoru = sorular[Math.floor(Math.random() * sorular.length)];
-            console.log(rastgelesoru + " yu çektim.");
         }
         secilensorular.push(sorular.indexOf(rastgelesoru));
-        console.log(secilensorular);
         soru.textContent = rastgelesoru;
         var chooses = [];
         for (let i = 0; i < 4; i++){
@@ -866,7 +861,6 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
         chooses[3].style="margin-bottom: 5%";
         document.querySelector("#sorualani").style="padding-bottom: 10em";
         var sorununidsi = sorular.indexOf(rastgelesoru);
-        console.log(sorununidsi);
         var dogrucevap = cevaplar[sorununidsi];
         var dogrucevapsikki = chooses[Math.floor(Math.random() * chooses.length)];
         var secilensikkinidsi = chooses.indexOf(dogrucevapsikki);
@@ -878,22 +872,17 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
             document.querySelectorAll(".choose").forEach((choose)=>{
                 choose.classList.replace("choose", "gecmischoose");
                 gecmissec.push(choose);
-                console.log(gecmissec);
             });
             var gecmissecsayi = gecmissec.length;
-            console.log(gecmissecsayi);
             gecmissec[gecmissecsayi-1].style="margin-bottom: 10%";
             document.querySelector(".soru").classList.replace("soru", "gecmissoru");
-            console.log(document.querySelectorAll(".gecmissoru"));
             sikyap(sorular, cevaplar, hatalicevaplar);
         });
         
         sorununidsi = sorununidsi*3;
-        console.log(sorununidsi);
         chooses.forEach((chooses) =>{
             chooses.innerHTML = hatalicevaplar[sorununidsi];
             sorununidsi = sorununidsi + 1;
-            console.log(sorununidsi);
             chooses.addEventListener("click", ()=>{
                 var secilen = chooses.textContent;
                 chooses.style.color="red";
@@ -908,7 +897,6 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
 //sag example:
                 var targetDuration = duration;
                 document.querySelector(".score").style="animation: score-shake .5s ease-in-out alternate; animation-iteration-count: 4";
-                console.log("Duration:", targetDuration, "milliseconds");
                 setTimeout(()=>{
                     var gercekcevap = document.createElement("p");
                     gercekcevap.innerHTML= "Doğru cevap: " + dogrucevap;
@@ -919,12 +907,10 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     secilencevap.setAttribute("id", "secilencevap");
                     document.querySelector("#sorualani").appendChild(secilencevap);
                     var all = document.querySelectorAll(".gecmischoose");
-                    console.log(all);
                     all.forEach((all) => {
                         all.remove();
                     });
                     var allnew = document.querySelectorAll(".choose");
-                    console.log(allnew);
                     allnew.forEach((allnew) => {
                         allnew.remove();
                     });
@@ -942,7 +928,6 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     yenidenbasla.addEventListener("click", ()=>{ 
                         if(document.querySelector(".choose")){
                             var all = document.querySelectorAll(".choose");
-                            console.log(all);
                             all.forEach((all) => {
                                 all.remove();
                             });
@@ -964,9 +949,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         }
                         skor = 0;
                         secilensorular = [];
-                        console.log(secilensorular);
                         var inputvalue = document.querySelector("#dil").value.toLowerCase();
-                        console.log(inputvalue)
                         if(inputvalue == "javascript"){
                             inputvalue = "script";
                             script(inputvalue);
@@ -982,7 +965,6 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                     dildegistir.addEventListener("click", ()=>{
                         if(document.querySelector(".choose")){
                             var all = document.querySelectorAll(".choose");
-                            console.log(all);
                             all.forEach((all) => {
                                 all.remove();
                             });
@@ -1004,9 +986,7 @@ function sikyap(sorular, cevaplar, hatalicevaplar, inputvalue){
                         }
                         skor = 0;
                         secilensorular = [];
-                        console.log(secilensorular);
                         var inputvalue = document.querySelector("#dil").value.toLowerCase();
-                        console.log(inputvalue);
                         document.querySelector("#sonuc").value="";
                         document.querySelector("#soru").style.display="block";
                         document.querySelector("#dil").style.display="inline-block";
@@ -1026,7 +1006,6 @@ function tekrar(event){
     if(event.key.toLowerCase() === "r"){
         if(document.querySelector(".choose")){
             var all = document.querySelectorAll(".choose");
-            console.log(all);
             all.forEach((all) => {
                 all.remove();
             });
@@ -1048,9 +1027,7 @@ function tekrar(event){
         }
         skor = 0;
         secilensorular = [];
-        console.log(secilensorular);
         var inputvalue = document.querySelector("#dil").value.toLowerCase();
-        console.log(inputvalue)
         if(inputvalue == "javascript"){
             document.querySelector("#soru").style.display="block";
             document.querySelector("#dil").style.display="inline-block";
@@ -1066,7 +1043,6 @@ function tekrar(event){
     } else if(event.key.toLowerCase() === "d"){
         if(document.querySelector(".choose")){
             var all = document.querySelectorAll(".choose");
-            console.log(all);
             all.forEach((all) => {
                 all.remove();
             });
@@ -1088,9 +1064,7 @@ function tekrar(event){
         }
         skor = 0;
         secilensorular = [];
-        console.log(secilensorular);
         var inputvalue = document.querySelector("#dil").value.toLowerCase();
-        console.log(inputvalue);
         document.querySelector("#sonuc").value="";
         setTimeout(()=>{
             document.querySelector("#soru").style.display="block";
